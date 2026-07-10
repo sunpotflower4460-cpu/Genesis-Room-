@@ -1,0 +1,29 @@
+{
+  "run_id": "g003-model-h-3d-seed0001",
+  "equations": "dphi/dt + u.grad(phi)=M lap(mu), mu=phi^3-phi-kappa lap(phi); du/dt=P[-u.grad(u)+nu lap(u)+C mu grad(phi)], div u=0",
+  "solver": "3D periodic pseudospectral: semi-implicit CH linear terms and viscosity, explicit nonlinear/advection/capillary, Leray projection",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    32,
+    32,
+    32
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "nu": 1.0,
+    "C": 2.0,
+    "phi_mean": 0.0,
+    "noise_amplitude": 0.01
+  },
+  "seed": 1,
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "commit": "c27b605",
+  "checksum": "7c89e92e121a7c99027d03c730d0dfe48ef818dfa07a46ec0da0d2c0904453d4"
+}

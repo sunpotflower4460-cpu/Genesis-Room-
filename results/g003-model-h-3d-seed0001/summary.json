@@ -1,0 +1,81 @@
+{
+  "run_id": "g003-model-h-3d-seed0001",
+  "emergence": {
+    "reached_level": 5,
+    "candidate_level": 6,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": true,
+      "circulation": true,
+      "persistent_individuality": false,
+      "co_differentiation": true,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "variance_growth": 6e-06,
+      "structure_factor_peak_k": 3.0,
+      "structure_factor_prominence": 14.773831,
+      "correlation_length": 0.333333,
+      "defect_count": 0,
+      "kinetic_energy": 0.0,
+      "circulation_proxy": 2.3e-05,
+      "coarsening_length_initial": 0.40855960083028076,
+      "coarsening_length_final": 1.7640279751769552,
+      "coarsening_exponent_proxy": -0.001450657680612016,
+      "max_kinetic_energy": 1.0498619168060757e-09,
+      "final_kinetic_energy": 1.0498619168060757e-09,
+      "mass_drift": 8.334089847275919e-12
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    },
+    "natural_emergence": {
+      "started_from_time_zero": true,
+      "target_shape_seeded": false,
+      "runtime_interventions": 0,
+      "target_dependent_rules": false,
+      "target_dependent_stopping": false,
+      "target_dependent_clipping": false,
+      "level_detected_by_measurement": true
+    }
+  },
+  "integrity": {
+    "conservation_drift": 8.334089847275919e-12,
+    "resolution_dependence": {
+      "24^3": 2.3737124219307097,
+      "32^3": 1.7648627428494534,
+      "40^3": 1.3913740524928753
+    },
+    "seed_reproducibility": {
+      "1": 5,
+      "2": 5,
+      "3": 5
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "C=0 capillary-force-off control",
+        "result": "reached_level=2, max_kinetic_energy=0.000e+00, L_final=1.764"
+      }
+    ]
+  }
+}
