@@ -37,15 +37,30 @@ def variance_growth(field_series):
     """Lv1: growth rate of spatial variance over time (EMERGENCE_LEVELS.md Level 1: "空間分散が
     ノイズ床を超えて増大" -- var_growth > 0 is part of the Level-1 gate `var_growth > 0 AND ...`).
 
-    field_series: sequence of T field snapshots (each 2D or 3D, real or complex), earliest first.
-    Returns (variances, growth_rate): per-frame spatial variance of |field| and the least-squares
-    slope of variance vs frame index (positive = growing away from the noise floor).
+    field_series: sequence of T field snapshots (each 2D or 3D), earliest first. Complex fields
+    (e.g. CGL/GPE order parameters starting near 0) use Var[|field|] -- amplitude departure from the
+    zero baseline is the meaningful signal, phase carries no "variance" of its own. Real fields (e.g.
+    a symmetric double-well order parameter like Cahn-Hilliard phi in {-1,+1}) use Var[field] directly
+    -- taking |field| would erase exactly the +/- domain structure Level 1 is trying to detect.
+
+    Returns (variances, growth_rate): per-frame spatial variance and the least-squares slope of
+    variance vs frame index, fit ONLY over the growth phase (index 0 up to the frame of maximum
+    variance). Many real order parameters SATURATE once symmetry-breaks (e.g. |A|->1 for CGL, or
+    phi->+/-1 for Cahn-Hilliard); a naive full-trajectory slope can then run negative from late-time
+    coarsening/relaxation even though a strong, genuine growth-away-from-the-noise-floor event
+    happened early on. Fitting only the pre-peak segment reports that early growth rate instead.
     """
-    variances = np.array([float(np.var(np.abs(np.asarray(f)))) for f in field_series])
+    arr = [np.asarray(f) for f in field_series]
+    is_complex = arr and np.iscomplexobj(arr[0])
+    variances = np.array([float(np.var(np.abs(f))) if is_complex else float(np.var(f)) for f in arr])
     t = np.arange(len(variances))
     if len(t) < 2:
         return variances, 0.0
-    growth_rate = float(np.polyfit(t, variances, 1)[0])
+    peak_idx = int(np.argmax(variances))
+    if peak_idx < 1:
+        growth_rate = float(np.polyfit(t, variances, 1)[0])
+    else:
+        growth_rate = float(np.polyfit(t[:peak_idx + 1], variances[:peak_idx + 1], 1)[0])
     return variances, growth_rate
 
 

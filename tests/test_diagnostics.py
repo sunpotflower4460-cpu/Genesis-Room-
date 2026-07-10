@@ -12,6 +12,33 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 from common import diagnostics as diag  # noqa: E402
 
 
+def test_variance_growth_saturating_complex_field():
+    """Regression test: amplitude that grows away from a near-zero noise floor then SATURATES (e.g.
+    CGL/GPE |A|->1) must report a positive growth_rate from the early departure, not a naive
+    full-trajectory slope that goes negative once late-time coarsening/relaxation dominates the fit.
+    """
+    t = np.linspace(0, 10, 40)
+    amp = np.tanh(t)  # grows 0->1 then flat; a real run's variance also DECLINES a bit past the peak
+    decline = np.concatenate([amp[:25], amp[25] - 0.05 * (t[25:] - t[25])])
+    rng = np.random.default_rng(0)
+    fields = [decline[i] * np.exp(1j * rng.uniform(0, 2 * np.pi, (16, 16))) for i in range(len(t))]
+    variances, growth_rate = diag.variance_growth(fields)
+    assert growth_rate > 0
+    assert variances[0] < variances[int(np.argmax(variances))]
+
+
+def test_variance_growth_real_field_preserves_sign_structure():
+    """A real +/-1 double-well field (e.g. Cahn-Hilliard phi) must use Var[field] directly -- Var[|field|]
+    would erase the +/- domain structure that IS the Level-1 signal.
+    """
+    n = 32
+    noise = 0.01 * np.ones((n, n))
+    saturated = np.where(np.indices((n, n))[0] < n // 2, 1.0, -1.0)
+    variances, growth_rate = diag.variance_growth([noise, saturated])
+    assert variances[-1] > variances[0]
+    assert growth_rate > 0
+
+
 def test_structure_factor_peak_known_wavelength():
     n = 64
     wavelength = 8.0
