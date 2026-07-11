@@ -1,0 +1,30 @@
+{
+  "run_id": "req-b-bootstrap-paradox-seed0002",
+  "equations": "R = kp_seed*v*(1-chi(u)) + kp_in*v*chi(u) - kd*chi(u)^2 (weak uniform seed + strong compartmentalization)",
+  "solver": "pseudo-spectral, semi-implicit CH (u) + implicit diffusion (v)",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    96,
+    96,
+    96
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.05,
+    "k_d": 0.03,
+    "k_p_seed": 0.01,
+    "k_p_in": 0.06
+  },
+  "seed": 2,
+  "seeds": [
+    2
+  ],
+  "commit": null,
+  "checksum": "8a0d1d9fee2a1683898ce4b1553f524df61a0082ba0becf7d4779fdcfae35ad2"
+}
