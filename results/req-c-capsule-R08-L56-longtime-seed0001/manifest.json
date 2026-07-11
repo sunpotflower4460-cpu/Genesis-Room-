@@ -1,0 +1,28 @@
+{
+  "run_id": "req-c-capsule-R08-L56-longtime-seed0001",
+  "equations": "compartmentalized genesis (R=kp*v*chi(u)-kd*chi(u)^2), capsule/cylinder probe",
+  "solver": "pseudo-spectral, semi-implicit CH + implicit diffusion",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    128,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.05,
+    "k_d": 0.03
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "cd6e8b7b672c6e9263d805883277e38339b870d983c4cff96916f16093b912fc"
+}

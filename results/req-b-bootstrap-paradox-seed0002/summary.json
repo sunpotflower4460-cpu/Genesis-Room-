@@ -1,0 +1,92 @@
+{
+  "run_id": "req-b-bootstrap-paradox-seed0002",
+  "emergence": {
+    "reached_level": 6,
+    "candidate_level": 7,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": true,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "u_bg_initial": 0.12033250398584067,
+      "u_bg_peak": 0.46603006893007604,
+      "u_bg_peak_time": 67.6,
+      "u_bg_final": 0.15619769086214533,
+      "u_sp_low": 0.21132486540518713,
+      "hump_shape_confirmed": true,
+      "background_clean_at_end": true,
+      "originated": true,
+      "final_n_droplets": 1,
+      "mass_drift": -4.595213098923523e-13,
+      "u_bg_series_sampled": [
+        0.12033250398584067,
+        0.16837773927435112,
+        0.21404228305083198,
+        0.2581689296206483,
+        0.30168802521816546,
+        0.34536561985902736,
+        0.38892171416281546,
+        0.4293281860210047,
+        0.46059805797874476,
+        0.4585564239664857,
+        0.39530431059608845,
+        0.27015246935382614,
+        0.20637085608581524,
+        0.18974945641509786,
+        0.18226207256874444,
+        0.17729610884432792,
+        0.1733119078310336,
+        0.17009129176313495,
+        0.16762100104372007,
+        0.16544125179158814,
+        0.16357088104480635,
+        0.16196358003903827,
+        0.16039333117409776,
+        0.15885344473322405,
+        0.15749748325586674
+      ]
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -4.595213098923523e-13,
+    "resolution_dependence": {
+      "96x96x96": 6
+    },
+    "seed_reproducibility": {
+      "2": 6
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "k_p_in=0 (seed-only, decisive control)",
+        "result": "see companion room -- expect background stays dirty"
+      }
+    ]
+  }
+}
