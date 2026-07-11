@@ -1,0 +1,75 @@
+{
+  "run_id": "req-a-compartmentalized-u035-seed0001",
+  "emergence": {
+    "reached_level": 6,
+    "candidate_level": 7,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": true,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "u_mean": 0.35,
+      "variance_growth": 0.003875,
+      "structure_factor_prominence": 28.7098,
+      "final_n_droplets": 6,
+      "final_top_sizes": [
+        273753.0,
+        120.0,
+        61.0,
+        35.0,
+        28.0
+      ],
+      "u_bg_final": 0.13462497664939002,
+      "u_bg_max": 0.4028199931989039,
+      "u_sp_low": 0.21132486540518713,
+      "background_clean": true,
+      "mass_drift": -4.0190073491430667e-13
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -4.0190073491430667e-13,
+    "resolution_dependence": {
+      "96x96x96": 6
+    },
+    "seed_reproducibility": {
+      "1": 6
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "u_mean=0.12 (stable uniform, 'nothing', decisive control 1)",
+        "result": "see companion room -- expect Lv0"
+      },
+      {
+        "name": "k_p=0 load-bearing (decisive control 2)",
+        "result": "see companion room -- expect death"
+      }
+    ]
+  }
+}
