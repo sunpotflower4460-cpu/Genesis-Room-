@@ -1,0 +1,75 @@
+{
+  "run_id": "dividing-protocell-3d-probe-R0-05-seed0001",
+  "emergence": {
+    "reached_level": 4,
+    "candidate_level": 5,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": false,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "mass_drift": -0.0,
+      "R0": 5,
+      "division_mode": "confounded_by_background_nucleation",
+      "division_snapshot_index": 22,
+      "initial_count": 1,
+      "final_count": 89,
+      "max_count": 95,
+      "nucleation_burst_detected": true,
+      "background_nucleation_suspected": true,
+      "n_components_far_from_original_site": 88,
+      "final_sizes_physical_volume": [
+        1664.0,
+        1662.0,
+        1660.0,
+        1257.0,
+        1255.0,
+        1250.0,
+        1250.0,
+        1247.0
+      ]
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "S"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -4.440892098500626e-16,
+    "resolution_dependence": {
+      "64x64x64(dx=1.000)": 89
+    },
+    "seed_reproducibility": {
+      "1": 4
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "R0 sweep (this room is one point in the sweep)",
+        "result": "division_mode=confounded_by_background_nucleation at R0=5.0"
+      }
+    ]
+  }
+}

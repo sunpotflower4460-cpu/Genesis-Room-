@@ -167,13 +167,51 @@ def _analyze_components(snapshots, dx=1.0, thr=0.5):
     return times, counts, size_lists
 
 
-def _classify_division(counts, initial_count):
+def _classify_division(counts, initial_count, max_burst_ratio=2.0, max_burst_absolute=3):
+    """count 系列から「分裂」候補を検出するが、多数の成分がほぼ同時に現れる核形成バーストは
+    分裂と区別する（依頼書の背景セクションが警告する「核形成と分裂の交絡」）。バースト＝直前比
+    max_burst_ratio 倍を超え、かつ絶対増分が max_burst_absolute を超える単一スナップショット間の
+    増加。バーストが一度でも検出されたら raw な増加があっても divided=False とする。
+    """
     final = counts[-1]
     maxc = max(counts)
-    divided = bool(maxc > initial_count)
+    nucleation_burst_detected = False
+    for i in range(1, len(counts)):
+        prev, cur = counts[i - 1], counts[i]
+        if cur <= prev:
+            continue
+        absolute = cur - prev
+        ratio = float("inf") if prev == 0 else cur / prev
+        if absolute > max_burst_absolute and ratio > max_burst_ratio:
+            nucleation_burst_detected = True
+    raw_increase = bool(maxc > initial_count)
+    divided = bool(raw_increase and not nucleation_burst_detected)
     div_idx = next((i for i, c in enumerate(counts) if c > initial_count), None)
     return {"divided": divided, "division_snapshot_index": div_idx, "initial_count": initial_count,
-            "final_count": final, "max_count": maxc}
+            "final_count": final, "max_count": maxc,
+            "nucleation_burst_detected": nucleation_burst_detected, "raw_count_increase": raw_increase}
+
+
+def _far_from_center_components(u_field, shape, dx=1.0, thr=0.5, center=None, max_distance_factor=2.5,
+                                 R0=None):
+    """probe run 用：連結成分の重心が液滴の初期配置中心から離れすぎていないかを見る（分裂で
+    できた娘液滴 vs 背景の別の場所で勝手に核形成した液滴、を空間的に区別する）。
+    Returns (n_far, n_total) -- n_far>0 なら背景核形成の疑いがある成分が存在。
+    """
+    count, labeled, sizes = diag.connected_components(u_field > thr)
+    if count == 0:
+        return 0, 0
+    physical_center = center or [s * dx / 2.0 for s in shape]
+    coms = np.atleast_2d(ndimage.center_of_mass(np.ones_like(labeled), labeled,
+                                                  index=np.arange(1, count + 1)))
+    threshold = max_distance_factor * (R0 if R0 else 5.0)
+    n_far = 0
+    for com in coms:
+        phys_com = [c * dx for c in com]
+        dist = float(np.sqrt(sum((phys_com[a] - physical_center[a]) ** 2 for a in range(len(shape)))))
+        if dist > threshold:
+            n_far += 1
+    return n_far, count
 
 
 def _save_room(room_id, genesis_yaml, emergence_report, integrity, input_vs_output, notes):
@@ -188,6 +226,9 @@ def run_natural_and_save(room_id, shape, seed, steps=STEPS, notes_extra=""):
     snapshots, phys = run(shape, steps, DT, seed, params=CONFIRMED_PARAMS)
     times, counts, size_lists = _analyze_components(snapshots)
     div = _classify_division(counts, counts[0])
+    u_fields = [s["u"] for s in snapshots]
+    _, growth_rate = diag.variance_growth(u_fields)
+    _, prominence = diag.structure_factor_peak(u_fields[-1])
 
     v_bg = phys["v_background_series"]
     v_bg_bounded = bool(max(v_bg) < 1.0) if v_bg else True  # sanity ceiling; no runaway supersaturation
@@ -196,12 +237,17 @@ def run_natural_and_save(room_id, shape, seed, steps=STEPS, notes_extra=""):
                       "persistent_individuality", "co_differentiation", "self_maintaining_closure",
                       "growth_division_inheritance", "selection_open_ended"]
     detected = {k: False for k in detected_keys}
+    detected["difference"] = bool(growth_rate > 0 and prominence > 1.5)
     detected["localization"] = bool(div["max_count"] >= 1)
     detected["persistent_individuality"] = bool(div["final_count"] >= 1 and not phys["diverged"])
+    # 核形成バーストは分裂ではない（依頼書「核形成と分裂の交絡」警告）: _classify_division が
+    # nucleation_burst_detected の場合 divided=False にしているので、そのまま使う。
     detected["growth_division_inheritance"] = bool(div["divided"])
     reached = 0
+    if detected["difference"]:
+        reached = 1
     if detected["localization"]:
-        reached = 2
+        reached = max(reached, 2)
     if detected["persistent_individuality"]:
         reached = max(reached, 4)
     if detected["growth_division_inheritance"]:
@@ -212,13 +258,17 @@ def run_natural_and_save(room_id, shape, seed, steps=STEPS, notes_extra=""):
         "uninterrupted_from_zero": True, "level_detected_by_measurement": True,
         "detected": detected,
         "measured_by": {"mass_drift": round(float(phys["mass_drift"]), 15),
+                        "variance_growth": round(float(growth_rate), 6),
+                        "structure_factor_prominence": round(float(prominence), 4),
                         "v_background_initial": round(v_bg[0], 4) if v_bg else None,
                         "v_background_final": round(phys["v_background_final"], 4),
                         "v_background_max": round(max(v_bg), 4) if v_bg else None,
                         "v_background_bounded": v_bg_bounded,
                         "droplet_count_final": div["final_count"],
                         "droplet_count_max": div["max_count"],
-                        "spontaneous_nucleation_occurred": bool(div["max_count"] >= 1)},
+                        "spontaneous_nucleation_occurred": bool(div["max_count"] >= 1),
+                        "nucleation_burst_detected": div["nucleation_burst_detected"],
+                        "raw_count_increase_before_burst_filter": div["raw_count_increase"]},
         "purity": {"per_object_labels": False, "external_optimum": False,
                    "role": "E" if reached >= 1 else "F"},
     }
@@ -229,8 +279,10 @@ def run_natural_and_save(room_id, shape, seed, steps=STEPS, notes_extra=""):
         target_encoded_in_initial_condition=False, gate_encodes_conclusion_causality=False,
         gate_passes_null_control=False, emerged_quantity_is_algebraic_restatement=False,
         control_runs=[{"name": "natural genesis (uniform+noise, NO seeded droplet)",
-                        "result": "droplet_count_max=%d, v_background bounded=%s (max=%.3f)"
-                                  % (div["max_count"], v_bg_bounded, max(v_bg) if v_bg else 0.0)}])
+                        "result": "droplet_count_max=%d, nucleation_burst_detected=%s, "
+                                  "v_background bounded=%s (max=%.3f)"
+                                  % (div["max_count"], div["nucleation_burst_detected"], v_bg_bounded,
+                                     max(v_bg) if v_bg else 0.0)}])
     checksum = io.checksum_of([snapshots[-1]["u"], snapshots[-1]["v"]])
     genesis_yaml = {
         "equations": "du/dt=M*lap(mu)+R, mu=f'(u)-kappa*lap(u); dv/dt=D_v*lap(v)-R; "
@@ -250,9 +302,17 @@ def run_probe_and_save(room_id, shape, R0, seed, steps=STEPS, dx=1.0, params=Non
     p = params or CONFIRMED_PARAMS
     snapshots, phys = run_droplet_probe(shape, R0, steps, DT, seed, params=p, dx=dx)
     times, counts, size_lists = _analyze_components(snapshots, dx=dx)
+    # probe（単一液滴を置く）では「元の液滴付近から生じたか」という空間的基準の方が
+    # 「一気に増えたか」という時間的基準（_classify_division の burst 検出、自然発生用）より
+    # 直接的な交絡排除になる: raw_count_increase を使い、空間チェックのみで確度を判定する。
     div = _classify_division(counts, counts[0])
-    mode = ("stable_no_division" if not div["divided"] else
+    n_far, n_total = _far_from_center_components(snapshots[-1]["u"], shape, dx=dx, R0=R0)
+    background_nucleation_suspected = bool(n_far > 0)
+    genuine_division = bool(div["raw_count_increase"] and not background_nucleation_suspected)
+    mode = ("stable_no_division" if not genuine_division else
             "clean_two_way_division" if div["max_count"] == 2 else "multi_fragmentation")
+    if div["raw_count_increase"] and background_nucleation_suspected:
+        mode = "confounded_by_background_nucleation"
 
     detected_keys = ["difference", "localization", "spontaneous_motion", "circulation",
                       "persistent_individuality", "co_differentiation", "self_maintaining_closure",
@@ -260,7 +320,7 @@ def run_probe_and_save(room_id, shape, R0, seed, steps=STEPS, dx=1.0, params=Non
     detected = {k: False for k in detected_keys}
     detected["localization"] = True
     detected["persistent_individuality"] = bool(div["final_count"] >= 1 and not phys["diverged"])
-    detected["growth_division_inheritance"] = bool(div["divided"])
+    detected["growth_division_inheritance"] = genuine_division
     reached = 2
     if detected["persistent_individuality"]:
         reached = 4
@@ -275,7 +335,9 @@ def run_probe_and_save(room_id, shape, R0, seed, steps=STEPS, dx=1.0, params=Non
         "measured_by": {"mass_drift": round(float(phys["mass_drift"]), 15),
                         "R0": R0, "division_mode": mode, "division_snapshot_index": div["division_snapshot_index"],
                         "initial_count": div["initial_count"], "final_count": div["final_count"],
-                        "max_count": div["max_count"],
+                        "max_count": div["max_count"], "nucleation_burst_detected": div["nucleation_burst_detected"],
+                        "background_nucleation_suspected": background_nucleation_suspected,
+                        "n_components_far_from_original_site": n_far,
                         "final_sizes_physical_volume": size_lists[-1][:8]},
         # 液滴は決定的対照/診断として置いている（自然発生の主張ではない）: role=S
         "purity": {"per_object_labels": True, "external_optimum": False, "role": "S"},
