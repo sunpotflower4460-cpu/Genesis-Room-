@@ -1,0 +1,69 @@
+{
+  "run_id": "req-a-compartmentalized-u012-control-seed0001",
+  "emergence": {
+    "reached_level": 0,
+    "candidate_level": 1,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": false,
+      "localization": false,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": false,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "u_mean": 0.12,
+      "variance_growth": -0.0,
+      "structure_factor_prominence": 80.7149,
+      "final_n_droplets": 0,
+      "final_top_sizes": [],
+      "u_bg_final": 0.14695432581957193,
+      "u_bg_max": 0.14695432581957193,
+      "u_sp_low": 0.21132486540518713,
+      "background_clean": true,
+      "mass_drift": -2.9465319073551655e-13
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "F"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -2.9465319073551655e-13,
+    "resolution_dependence": {
+      "96x96x96": 0
+    },
+    "seed_reproducibility": {
+      "1": 0
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "u_mean=0.12 (stable uniform, 'nothing', decisive control 1)",
+        "result": "see companion room -- expect Lv0"
+      },
+      {
+        "name": "k_p=0 load-bearing (decisive control 2)",
+        "result": "see companion room -- expect death"
+      }
+    ]
+  }
+}
