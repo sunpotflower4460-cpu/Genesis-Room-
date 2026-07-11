@@ -1,0 +1,28 @@
+{
+  "run_id": "req-a-compartmentalized-loadbearing-kp0-seed0001",
+  "equations": "du/dt=M*lap(mu)+R, mu=f'(u)-kappa*lap(u); dv/dt=D_v*lap(v)-R; R=kp*v*chi(u)-kd*chi(u)^2 (compartmentalized: production INSIDE only)",
+  "solver": "pseudo-spectral, semi-implicit CH (u) + implicit diffusion (v), explicit reaction",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    96,
+    96,
+    96
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.0,
+    "k_d": 0.03
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "2c3958df14280f2787bd1a1014b9571791c5d2f04f0699168be14c55df895f6b"
+}
