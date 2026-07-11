@@ -157,14 +157,26 @@ N_LO_L64 = 48  # same physical domain L=64 as N_HI, coarser dx -- genuine resolu
 CONFIRMED_PARAMS = dict(DEFAULTS)  # 2D-confirmed: M=1,kappa=1,W=1,w=0.15,D_v=2,k_p=0.03,k_d=0.04
 
 
-def _analyze_components(snapshots, dx=1.0, thr=0.5):
-    times, counts, size_lists = [], [], []
+def _analyze_components(snapshots, dx=1.0, thr=0.5, min_size_fraction=0.05):
+    """成分数・サイズの時系列に加え、"significant" 版（初期体積の min_size_fraction 未満の破片
+    ——背景が別途核形成した小さな新液滴を含む——を除いた数）も返す。単純な生カウントは、遠方の
+    背景核形成バーストで生じる無数の小さな液滴を、追跡中の液滴の分裂と区別できない
+    （domain 全体が中心から近いと空間距離フィルタも効かないため、体積フィルタの方が頑健）。
+    """
+    times, counts, size_lists, sig_counts = [], [], [], []
+    initial_size = None
     for s in snapshots:
         n, sizes = droplet_components(s["u"], thr=thr)
+        vols = sorted((sizes * dx ** 3).tolist(), reverse=True)
+        if initial_size is None and vols:
+            initial_size = vols[0]
+        min_vol = (initial_size or 0.0) * min_size_fraction
+        sig_n = sum(1 for v in vols if v >= min_vol)
         times.append(s["step"] * DT)
         counts.append(n)
-        size_lists.append(sorted((sizes * dx ** 3).tolist(), reverse=True))
-    return times, counts, size_lists
+        size_lists.append(vols)
+        sig_counts.append(sig_n)
+    return times, counts, size_lists, sig_counts
 
 
 def _classify_division(counts, initial_count, max_burst_ratio=2.0, max_burst_absolute=3):
@@ -224,7 +236,7 @@ def _save_room(room_id, genesis_yaml, emergence_report, integrity, input_vs_outp
 
 def run_natural_and_save(room_id, shape, seed, steps=STEPS, notes_extra=""):
     snapshots, phys = run(shape, steps, DT, seed, params=CONFIRMED_PARAMS)
-    times, counts, size_lists = _analyze_components(snapshots)
+    times, counts, size_lists, _sig_counts = _analyze_components(snapshots)
     div = _classify_division(counts, counts[0])
     u_fields = [s["u"] for s in snapshots]
     _, growth_rate = diag.variance_growth(u_fields)
@@ -301,18 +313,31 @@ def run_natural_and_save(room_id, shape, seed, steps=STEPS, notes_extra=""):
 def run_probe_and_save(room_id, shape, R0, seed, steps=STEPS, dx=1.0, params=None, notes_extra=""):
     p = params or CONFIRMED_PARAMS
     snapshots, phys = run_droplet_probe(shape, R0, steps, DT, seed, params=p, dx=dx)
-    times, counts, size_lists = _analyze_components(snapshots, dx=dx)
-    # probe（単一液滴を置く）では「元の液滴付近から生じたか」という空間的基準の方が
-    # 「一気に増えたか」という時間的基準（_classify_division の burst 検出、自然発生用）より
-    # 直接的な交絡排除になる: raw_count_increase を使い、空間チェックのみで確度を判定する。
-    div = _classify_division(counts, counts[0])
-    n_far, n_total = _far_from_center_components(snapshots[-1]["u"], shape, dx=dx, R0=R0)
-    background_nucleation_suspected = bool(n_far > 0)
-    genuine_division = bool(div["raw_count_increase"] and not background_nucleation_suspected)
-    mode = ("stable_no_division" if not genuine_division else
-            "clean_two_way_division" if div["max_count"] == 2 else "multi_fragmentation")
-    if div["raw_count_increase"] and background_nucleation_suspected:
-        mode = "confounded_by_background_nucleation"
+    times, counts, size_lists, sig_counts = _analyze_components(snapshots, dx=dx)
+    # 背景核形成が生む無数の小さな破片（初期体積の5%未満）を除いた "significant" 成分数で分裂を
+    # 判定する（依頼書「核形成と分裂の交絡」排除。生カウントは遠方の背景バーストと本体の分裂を
+    # 区別できない -- 距離ベースの _far_from_center_components は箱が小さいと事実上機能しない
+    # ことが実データで判明したため、体積ベースに切り替えた）。
+    div = _classify_division(sig_counts, sig_counts[0])
+    initial_vol = size_lists[0][0] if size_lists and size_lists[0] else 0.0
+    min_vol = initial_vol * 0.05
+    genuine_division = bool(div["divided"])
+    size_ratio = None
+    if genuine_division and div["division_snapshot_index"] is not None:
+        sig_sizes = [v for v in size_lists[div["division_snapshot_index"]] if v >= min_vol]
+        if len(sig_sizes) >= 2:
+            ordered = sorted(sig_sizes, reverse=True)
+            size_ratio = round(ordered[1] / ordered[0], 4) if ordered[0] > 0 else 0.0
+    background_contamination = bool(counts[-1] > sig_counts[-1])  # final: raw vs significant mismatch
+
+    if not genuine_division:
+        mode = "stable_no_division"
+    elif div["max_count"] > 2:
+        mode = "multi_fragmentation"
+    elif size_ratio is not None and size_ratio >= 0.5:
+        mode = "clean_two_way_division"
+    else:
+        mode = "asymmetric_budding"  # unequal daughters (small satellite), not a 50:50 pinch
 
     detected_keys = ["difference", "localization", "spontaneous_motion", "circulation",
                       "persistent_individuality", "co_differentiation", "self_maintaining_closure",
@@ -334,10 +359,14 @@ def run_probe_and_save(room_id, shape, R0, seed, steps=STEPS, dx=1.0, params=Non
         "detected": detected,
         "measured_by": {"mass_drift": round(float(phys["mass_drift"]), 15),
                         "R0": R0, "division_mode": mode, "division_snapshot_index": div["division_snapshot_index"],
-                        "initial_count": div["initial_count"], "final_count": div["final_count"],
-                        "max_count": div["max_count"], "nucleation_burst_detected": div["nucleation_burst_detected"],
-                        "background_nucleation_suspected": background_nucleation_suspected,
-                        "n_components_far_from_original_site": n_far,
+                        "division_time": (times[div["division_snapshot_index"]]
+                                          if div["division_snapshot_index"] is not None else None),
+                        "daughter_size_ratio": size_ratio,
+                        "significant_initial_count": div["initial_count"],
+                        "significant_final_count": div["final_count"],
+                        "significant_max_count": div["max_count"],
+                        "raw_final_count": counts[-1],
+                        "background_contamination_detected": background_contamination,
                         "final_sizes_physical_volume": size_lists[-1][:8]},
         # 液滴は決定的対照/診断として置いている（自然発生の主張ではない）: role=S
         "purity": {"per_object_labels": True, "external_optimum": False, "role": "S"},
@@ -360,9 +389,10 @@ def run_probe_and_save(room_id, shape, R0, seed, steps=STEPS, dx=1.0, params=Non
         "params": p, "seed": seed, "seeds": [seed], "commit": None, "checksum": checksum,
     }
     notes = ("依頼3 [決定的対照/診断、自然発生の主張ではない] R0=%.1f probe, t_final=%.0f, grid=%s, "
-             "dx=%.3f。droplet_count time series: %s。division_mode=%s。%s"
-             % (R0, steps * DT, shape, dx, list(zip([round(t) for t in times], counts)), mode,
-                notes_extra))
+             "dx=%.3f。raw count time series: %s。significant(>=5%%初期体積) count time series: %s。"
+             "division_mode=%s, daughter_size_ratio=%s。%s"
+             % (R0, steps * DT, shape, dx, list(zip([round(t) for t in times], counts)),
+                list(zip([round(t) for t in times], sig_counts)), mode, size_ratio, notes_extra))
     _save_room(room_id, genesis_yaml, report, integrity, input_vs_output, notes)
     return snapshots, phys, report, times, counts, size_lists
 
