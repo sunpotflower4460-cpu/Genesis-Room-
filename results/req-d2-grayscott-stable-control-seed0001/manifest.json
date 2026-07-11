@@ -1,0 +1,25 @@
+{
+  "run_id": "req-d2-grayscott-stable-control-seed0001",
+  "equations": "Gray-Scott: du/dt=Du*lap(u)-u*v^2+F(1-u), dv/dt=Dv*lap(v)+u*v^2-(F+k)v",
+  "solver": "pseudo-spectral, semi-implicit diffusion, explicit reaction",
+  "dt": 1.0,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "Du": 0.16,
+    "Dv": 0.08,
+    "F": 0.022,
+    "k": 0.051
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": null
+}
