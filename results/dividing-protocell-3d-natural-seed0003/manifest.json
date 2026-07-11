@@ -1,0 +1,28 @@
+{
+  "run_id": "dividing-protocell-3d-natural-seed0003",
+  "equations": "du/dt=M*lap(mu)+R, mu=f'(u)-kappa*lap(u); dv/dt=D_v*lap(v)-R; R=k_p*v*(1-chi(u))-k_d*chi(u)",
+  "solver": "pseudo-spectral, semi-implicit CH (u) + implicit diffusion (v), explicit reaction",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.03,
+    "k_d": 0.04
+  },
+  "seed": 3,
+  "seeds": [
+    3
+  ],
+  "commit": null,
+  "checksum": "89d934c2b7ff3e91565bc7332c44261a05ae4b6cff0b8a9e9928c5c813e313d2"
+}

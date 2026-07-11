@@ -1,0 +1,76 @@
+{
+  "run_id": "dividing-protocell-3d-probe-R0-13-res48-seed0001",
+  "emergence": {
+    "reached_level": 4,
+    "candidate_level": 5,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": false,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "mass_drift": -2.38e-13,
+      "R0": 13,
+      "division_mode": "stable_no_division",
+      "division_snapshot_index": 16,
+      "division_time": 80.0,
+      "daughter_size_ratio": null,
+      "significant_initial_count": 1,
+      "significant_final_count": 24,
+      "significant_max_count": 24,
+      "raw_final_count": 113,
+      "background_contamination_detected": true,
+      "final_sizes_physical_volume": [
+        2808.8888888888882,
+        1455.4074074074072,
+        1410.37037037037,
+        1384.2962962962958,
+        1372.4444444444441,
+        1360.5925925925922,
+        1194.6666666666663,
+        1192.296296296296
+      ]
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "S"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -2.378652830259398e-13,
+    "resolution_dependence": {
+      "48x48x48(dx=1.333)": 24
+    },
+    "seed_reproducibility": {
+      "1": 4
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "R0 sweep (this room is one point in the sweep)",
+        "result": "division_mode=stable_no_division at R0=13.0"
+      }
+    ]
+  }
+}

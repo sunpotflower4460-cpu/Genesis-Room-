@@ -1,0 +1,79 @@
+{
+  "run_id": "g003-model-h-3d-control-C0-seed0001",
+  "emergence": {
+    "reached_level": 2,
+    "candidate_level": 3,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": false,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "variance_growth": 0.028243,
+      "structure_factor_peak_k": 4.0,
+      "structure_factor_prominence": 19.401684,
+      "correlation_length": 0.25,
+      "defect_count": 0,
+      "kinetic_energy": 0.0,
+      "circulation_proxy": 0.0,
+      "occupied_fraction_phase_pos": 0.500868,
+      "connected_components_pos": 2,
+      "connected_components_neg": 2,
+      "coarsening_rate_exponent": 0.1261875960201641,
+      "coarsening_length_final": 1.592054,
+      "final_kinetic_energy": 0.0
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    },
+    "natural_emergence": {
+      "started_from_time_zero": true,
+      "target_shape_seeded": false,
+      "runtime_interventions": 0,
+      "target_dependent_rules": false,
+      "target_dependent_stopping": false,
+      "target_dependent_clipping": false,
+      "level_detected_by_measurement": true
+    }
+  },
+  "integrity": {
+    "conservation_drift": -9.259764179384011e-17,
+    "resolution_dependence": {
+      "48x48x48": 1.592054
+    },
+    "seed_reproducibility": {
+      "1": 2
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true,
+    "free_energy_monotonic_decrease": true,
+    "free_energy_drift": -0.08904001753782043
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "C=0 (pure Cahn-Hilliard, no capillary coupling)",
+        "result": "run separately; see NOTES for this room"
+      }
+    ]
+  }
+}

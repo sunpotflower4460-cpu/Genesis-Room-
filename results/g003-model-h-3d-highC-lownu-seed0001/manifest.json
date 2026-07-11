@@ -1,0 +1,25 @@
+{
+  "run_id": "g003-model-h-3d-highC-lownu-seed0001",
+  "equations": "d(phi)/dt + u.grad(phi) = M*lap(mu), mu=phi^3-phi-kappa*lap(phi); d(u)/dt + u.grad(u) = -grad(p) + nu*lap(u) + C*(mu*grad(phi)), div(u)=0",
+  "solver": "pseudo-spectral, semi-implicit CH/viscous, Leray projection, 2/3 dealiasing",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    48,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "nu": 0.3,
+    "C": 5.0
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "018d7c3081f3a36295b5f00922200cfa47f27c0e91c6dd977344a97623f83524"
+}

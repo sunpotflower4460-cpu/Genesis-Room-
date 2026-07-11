@@ -1,0 +1,82 @@
+{
+  "run_id": "g003-model-h-3d-res32-seed0001",
+  "emergence": {
+    "reached_level": 5,
+    "candidate_level": 6,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": true,
+      "circulation": true,
+      "persistent_individuality": false,
+      "co_differentiation": true,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "variance_growth": 0.037437,
+      "structure_factor_peak_k": 1.0,
+      "structure_factor_prominence": 15.338395,
+      "correlation_length": 1.0,
+      "defect_count": 0,
+      "kinetic_energy": 0.006665,
+      "circulation_proxy": 0.028764,
+      "occupied_fraction_phase_pos": 0.498413,
+      "connected_components_pos": 1,
+      "connected_components_neg": 2,
+      "control_C0_final_kinetic_energy": 0.0,
+      "control_C0_coarsening_length": 1.592054,
+      "primary_coarsening_length": 3.253621,
+      "coarsening_rate_exponent": 0.25812981353643183,
+      "coarsening_length_final": 3.253621,
+      "final_kinetic_energy": 0.0066646068
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    },
+    "natural_emergence": {
+      "started_from_time_zero": true,
+      "target_shape_seeded": false,
+      "runtime_interventions": 0,
+      "target_dependent_rules": false,
+      "target_dependent_stopping": false,
+      "target_dependent_clipping": false,
+      "level_detected_by_measurement": true
+    }
+  },
+  "integrity": {
+    "conservation_drift": 7.318364664277155e-18,
+    "resolution_dependence": {
+      "32x32x32": 3.253621
+    },
+    "seed_reproducibility": {
+      "1": 5
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true,
+    "free_energy_monotonic_decrease": true,
+    "free_energy_drift": -0.13823811976691497
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "C=0 (pure Cahn-Hilliard, no capillary coupling)",
+        "result": "final_kinetic_energy=0.000e+00 (u stays exactly 0 since forcing is identically 0 with C=0), coarsening_length=1.5921"
+      }
+    ]
+  }
+}

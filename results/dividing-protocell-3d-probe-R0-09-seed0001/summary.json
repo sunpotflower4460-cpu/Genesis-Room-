@@ -1,0 +1,76 @@
+{
+  "run_id": "dividing-protocell-3d-probe-R0-09-seed0001",
+  "emergence": {
+    "reached_level": 4,
+    "candidate_level": 5,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": false,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "mass_drift": -2e-15,
+      "R0": 9,
+      "division_mode": "stable_no_division",
+      "division_snapshot_index": 19,
+      "division_time": 95.0,
+      "daughter_size_ratio": null,
+      "significant_initial_count": 1,
+      "significant_final_count": 40,
+      "significant_max_count": 40,
+      "raw_final_count": 92,
+      "background_contamination_detected": true,
+      "final_sizes_physical_volume": [
+        2978.0,
+        2035.0,
+        2033.0,
+        2031.0,
+        2027.0,
+        2027.0,
+        2022.0,
+        594.0
+      ]
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "S"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -2.3314683517128287e-15,
+    "resolution_dependence": {
+      "64x64x64(dx=1.000)": 40
+    },
+    "seed_reproducibility": {
+      "1": 4
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "R0 sweep (this room is one point in the sweep)",
+        "result": "division_mode=stable_no_division at R0=9.0"
+      }
+    ]
+  }
+}

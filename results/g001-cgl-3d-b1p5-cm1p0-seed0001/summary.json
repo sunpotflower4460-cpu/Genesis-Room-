@@ -1,0 +1,98 @@
+{
+  "run_id": "g001-cgl-3d-b1p5-cm1p0-seed0001",
+  "emergence": {
+    "reached_level": 1,
+    "candidate_level": 2,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": false,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": false,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "variance_growth": 0.004285,
+      "structure_factor_peak_k": 1.0,
+      "structure_factor_prominence": 26.398877,
+      "correlation_length": 1.0,
+      "defect_count": 0,
+      "defect_count_series": [
+        54823,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "defect_tail_mean": 0.0,
+      "defect_dynamics_still_coarsening": false,
+      "defect_dynamics_extinct": true,
+      "defect_dynamics_trend_relative": 0.0,
+      "defect_dynamics_residual_relative_std": 0.0
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    },
+    "natural_emergence": {
+      "started_from_time_zero": true,
+      "target_shape_seeded": false,
+      "runtime_interventions": 0,
+      "target_dependent_rules": false,
+      "target_dependent_stopping": false,
+      "target_dependent_clipping": false,
+      "level_detected_by_measurement": true
+    }
+  },
+  "integrity": {
+    "conservation_drift": 0.0,
+    "resolution_dependence": {
+      "48x48x48": 0.0
+    },
+    "seed_reproducibility": {
+      "1": 1
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "(b,c)=(0,0) baseline (relaxational/frozen limit)",
+        "result": "reference point for comparing activity across the (b,c) sweep"
+      }
+    ]
+  }
+}

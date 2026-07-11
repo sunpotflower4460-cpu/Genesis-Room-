@@ -1,0 +1,23 @@
+{
+  "run_id": "g001-cgl-3d-b0c0-noise0p001-seed0001",
+  "equations": "dA/dt = A + (1+i*b)*lap(A) - (1+i*c)*|A|^2*A  (complex Ginzburg-Landau)",
+  "solver": "real-space finite-difference (periodic np.roll Laplacian), explicit Euler, dt auto-selected from b via stable_dt()",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    48,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": {
+    "b": 0.0,
+    "c": 0.0
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "50c37c6cc26daa2d60623b25b5203b24996499e2a081464512b4c1b3a3695c6c"
+}

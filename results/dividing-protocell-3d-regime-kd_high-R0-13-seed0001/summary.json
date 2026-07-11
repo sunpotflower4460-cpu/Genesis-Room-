@@ -1,0 +1,67 @@
+{
+  "run_id": "dividing-protocell-3d-regime-kd_high-R0-13-seed0001",
+  "emergence": {
+    "reached_level": 2,
+    "candidate_level": 3,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": false,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": false,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "mass_drift": -1.69e-13,
+      "R0": 13,
+      "division_mode": "stable_no_division",
+      "division_snapshot_index": null,
+      "division_time": null,
+      "daughter_size_ratio": null,
+      "significant_initial_count": 1,
+      "significant_final_count": 0,
+      "significant_max_count": 1,
+      "raw_final_count": 0,
+      "background_contamination_detected": false,
+      "final_sizes_physical_volume": []
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "S"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -1.6897594434794883e-13,
+    "resolution_dependence": {
+      "48x48x48(dx=1.000)": 0
+    },
+    "seed_reproducibility": {
+      "1": 2
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "R0 sweep (this room is one point in the sweep)",
+        "result": "division_mode=stable_no_division at R0=13.0"
+      }
+    ]
+  }
+}

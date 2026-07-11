@@ -1,0 +1,76 @@
+{
+  "run_id": "dividing-protocell-3d-regime-kd_low-R0-13-seed0001",
+  "emergence": {
+    "reached_level": 7,
+    "candidate_level": 8,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": false,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": true,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "mass_drift": -1.68e-13,
+      "R0": 13,
+      "division_mode": "multi_fragmentation",
+      "division_snapshot_index": 14,
+      "division_time": 46.2,
+      "daughter_size_ratio": 0.0719,
+      "significant_initial_count": 1,
+      "significant_final_count": 8,
+      "significant_max_count": 8,
+      "raw_final_count": 32,
+      "background_contamination_detected": true,
+      "final_sizes_physical_volume": [
+        11446.0,
+        7095.0,
+        1223.0,
+        1220.0,
+        1220.0,
+        840.0,
+        837.0,
+        834.0
+      ]
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "S"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -1.6819878823071122e-13,
+    "resolution_dependence": {
+      "48x48x48(dx=1.000)": 8
+    },
+    "seed_reproducibility": {
+      "1": 7
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "R0 sweep (this room is one point in the sweep)",
+        "result": "division_mode=multi_fragmentation at R0=13.0"
+      }
+    ]
+  }
+}

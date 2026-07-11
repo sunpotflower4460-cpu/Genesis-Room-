@@ -1,0 +1,25 @@
+{
+  "run_id": "g003-model-h-3d-res32-seed0001",
+  "equations": "d(phi)/dt + u.grad(phi) = M*lap(mu), mu=phi^3-phi-kappa*lap(phi); d(u)/dt + u.grad(u) = -grad(p) + nu*lap(u) + C*(mu*grad(phi)), div(u)=0",
+  "solver": "pseudo-spectral, semi-implicit CH/viscous, Leray projection, 2/3 dealiasing",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    32,
+    32,
+    32
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "nu": 1.0,
+    "C": 2.0
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "df869cbb37e7018811b11c185222888cc3bbcfa7b9b7939206908e3251548905"
+}

@@ -1,0 +1,28 @@
+{
+  "run_id": "dividing-protocell-3d-regime-kp_low-R0-13-seed0001",
+  "equations": "du/dt=M*lap(mu)+R, mu=f'(u)-kappa*lap(u); dv/dt=D_v*lap(v)-R; R=k_p*v*(1-chi(u))-k_d*chi(u)",
+  "solver": "pseudo-spectral, semi-implicit CH (u) + implicit diffusion (v), explicit reaction",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    48,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.015,
+    "k_d": 0.04
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "62d4ddd930b01c3905c2d55b582b3d57a1fbe66823a10bc80105d29d7b309f49"
+}
