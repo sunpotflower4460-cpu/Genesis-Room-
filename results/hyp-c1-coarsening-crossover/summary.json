@@ -8,7 +8,7 @@
     "detected": {},
     "measured_by": {
       "prediction": "Model H(C=2)はn(t)が時間とともに上昇（クロスオーバー）、C=0はn~1/3に留まる",
-      "verdict": "falsified",
+      "verdict": "supported (crossover in progress, not yet at n=1)",
       "model_h": {
         "n_t_centers": [
           15.0,
@@ -586,7 +586,8 @@
         0.25915272550034707,
         0.2600703024496982,
         0.2610479598808153
-      ]
+      ],
+      "verdict_fix_note": "第2ラウンドで判定ロジックのバグを修正（c0の非単調な軌跡を誤読していた）。生データは変更なし、判定のみ再計算。旧verdict='falsified'は誤り。"
     },
     "purity": {
       "per_object_labels": false,

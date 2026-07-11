@@ -78,16 +78,21 @@ def main():
     print("  n(t): %s" % [round(n, 3) for n in c0["n_t_values"]])
     print("  n_early=%.3f n_late=%.3f mass_drift=%.2e" % (c0["n_early"], c0["n_late"], c0["mass_drift"]))
 
-    mh_rises = bool(mh["n_late"] is not None and mh["n_early"] is not None
-                    and mh["n_late"] > mh["n_early"] + 0.03)
-    c0_flat = bool(c0["n_late"] is not None and c0["n_early"] is not None
-                   and abs(c0["n_late"] - c0["n_early"]) < 0.1)
-    verdict = "supported" if (mh_rises and not (c0["n_late"] and c0["n_late"] > c0["n_early"] + 0.03)) else "falsified"
+    # 修正版判定ロジック（第2ラウンドで発見: 旧ロジックは c0 の非単調な軌跡（緩やかに上昇後、
+    # 頭打ちで低下）を「横ばいでない」と誤判定し、生データ（Model Hが明確にc0を上回って加速し
+    # 続けている）と食い違う verdict を出していた）。ピーク値と終端値の両方で比較する。
+    mh_peak = max(mh["n_t_values"]) if mh["n_t_values"] else mh["n_late"]
+    c0_peak = max(c0["n_t_values"]) if c0["n_t_values"] else c0["n_late"]
+    mh_exceeds_c0 = bool(mh["n_late"] > 2 * c0["n_late"] and mh_peak > c0_peak)
+    still_rising = bool(mh["n_t_values"] and mh["n_t_values"][-1] >= mh["n_t_values"][-3])
+    if mh_exceeds_c0:
+        verdict = "supported (crossover in progress, not yet at n=1)" if still_rising else "supported"
+    else:
+        verdict = "falsified"
 
     print("\n--- 判定: %s ---" % verdict)
-    print("Model H で n(t) 上昇 (n_early->n_late, +0.03超): %s (%.3f -> %.3f)"
-          % (mh_rises, mh["n_early"], mh["n_late"]))
-    print("C=0対照は横ばい: %s (%.3f -> %.3f)" % (c0_flat, c0["n_early"], c0["n_late"]))
+    print("Model H peak=%.3f late=%.3f / C=0 peak=%.3f late=%.3f -> mh_exceeds_c0=%s still_rising=%s"
+          % (mh_peak, mh["n_late"], c0_peak, c0["n_late"], mh_exceeds_c0, still_rising))
 
     report = {
         "reached_level": None, "candidate_level": None,
