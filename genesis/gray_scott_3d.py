@@ -73,6 +73,7 @@ def run(shape, steps, seed, params=None, snapshot_every=None, dt=DT):
         p.update(params)
     rng = np.random.default_rng(seed)
     u, v = make_seed_initial(shape, rng)
+    mass0 = float(np.mean(u + v))
     _, k2 = k_grid(shape)
     snapshot_every = snapshot_every or max(1, steps // 60)
     snapshots = []
@@ -87,7 +88,10 @@ def run(shape, steps, seed, params=None, snapshot_every=None, dt=DT):
             snapshots.append({"step": t, "n_spots": n_spots, "v_max": float(v.max())})
     if not snapshots:
         snapshots = [{"step": 0, "n_spots": 0, "v_max": float(v.max())}]
-    phys = {"diverged": diverged}
+    mass1 = float(np.mean(u + v))
+    # Gray-Scott は u,v とも保存則を持たない(F,kによる正味の湧き出し/消滅がある)。
+    # mass_driftはここでは「発散していないか」の健全性チェックとしてのみ使う。
+    phys = {"diverged": diverged, "mass_drift": mass1 - mass0}
     return snapshots, phys, u, v
 
 
@@ -127,7 +131,7 @@ def classify_and_save(room_id, shape, steps, seed, params=None, label="", notes_
                   "role": "E" if replicated else "N"},
     }
     integrity = io.integrity_block(
-        conservation_drift=None, resolutions_result={"%dx%dx%d" % shape: n_max},
+        conservation_drift=phys["mass_drift"], resolutions_result={"%dx%dx%d" % shape: n_max},
         seed_success={str(seed): reached}, nan_or_clip=phys["diverged"])
     input_vs_output = io.input_output_selfcheck(
         target_encoded_in_initial_condition=False, gate_encodes_conclusion_causality=False,
