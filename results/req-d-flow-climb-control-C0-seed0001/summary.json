@@ -1,0 +1,71 @@
+{
+  "run_id": "req-d-flow-climb-control-C0-seed0001",
+  "emergence": {
+    "reached_level": 6,
+    "candidate_level": 7,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": true,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "variance_growth": 0.003874,
+      "structure_factor_prominence": 28.6912,
+      "final_n_droplets": 6,
+      "final_top_sizes": [
+        80262.0,
+        549.0,
+        440.0,
+        13.0,
+        8.0
+      ],
+      "u_bg_final": 0.13553983367513261,
+      "u_sp_low": 0.21132486540518713,
+      "background_clean": true,
+      "final_kinetic_energy": 0.0,
+      "final_circulation": 0.0,
+      "mass_drift": 1.1102230246251565e-15
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    }
+  },
+  "integrity": {
+    "conservation_drift": 1.1102230246251565e-15,
+    "resolution_dependence": {
+      "64x64x64": 6
+    },
+    "seed_reproducibility": {
+      "1": 6
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "C=0 (flow decoupled, decisive control)",
+        "result": "see companion room -- expect Lv3/Lv5 disappear, Lv4/Lv6 remain"
+      }
+    ]
+  }
+}
