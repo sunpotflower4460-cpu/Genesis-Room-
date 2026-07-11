@@ -1,0 +1,20 @@
+{
+  "run_id": "hyp-task3-3-high-Dv",
+  "equations": "dividing_protocell natural genesis, D_v sweep at fixed kd (candidate3)",
+  "solver": "pseudo-spectral",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    48,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": "see measured_by",
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "6c3c396ed6b5c36dcae172271f462051b1266b851e92df3deea8ac65478fd712"
+}

@@ -1,0 +1,88 @@
+{
+  "run_id": "hyp-task3-3-high-Dv",
+  "emergence": {
+    "reached_level": null,
+    "candidate_level": null,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {},
+    "measured_by": {
+      "prediction": "D_vを上げると核形成なし窓が成長域(低比)へ広がる（H-B1安全比が下がる）",
+      "verdict": "falsified",
+      "points": [
+        {
+          "kp": 0.03,
+          "kd": 0.04,
+          "D_v": 2.0,
+          "nucleated": true,
+          "note": "H-B1既知(再利用)"
+        },
+        {
+          "kp": 0.03,
+          "kd": 0.04,
+          "D_v": 6.0,
+          "nucleated": true,
+          "v_background_max": 0.3,
+          "u_local_max": 0.935
+        },
+        {
+          "kp": 0.03,
+          "kd": 0.04,
+          "D_v": 12.0,
+          "nucleated": true,
+          "v_background_max": 0.3,
+          "u_local_max": 0.935
+        },
+        {
+          "kp": 0.03,
+          "kd": 0.05,
+          "D_v": 2.0,
+          "nucleated": true,
+          "note": "H-B1既知(再利用)"
+        },
+        {
+          "kp": 0.03,
+          "kd": 0.05,
+          "D_v": 6.0,
+          "nucleated": true,
+          "v_background_max": 0.3,
+          "u_local_max": 0.558
+        }
+      ],
+      "mechanistic_note": "D_vはvの拡散(再分配)を速めるが、局所反応速度kp*v(uへの変換速度)自体は変えないため、供給が速くても局所生成が追いつき核形成する。"
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    }
+  },
+  "integrity": {
+    "conservation_drift": 0.0,
+    "resolution_dependence": {
+      "48x48x48": 5
+    },
+    "seed_reproducibility": {
+      "1": 5
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "D_v=2 baseline (H-B1)",
+        "result": "kd=0.04/0.05 both nucleate"
+      }
+    ]
+  }
+}
