@@ -1,0 +1,16 @@
+{
+  "run_id": "hyp-a1-g001-finite-size",
+  "equations": "complex Ginzburg-Landau, box-size scan",
+  "solver": "real-space finite-difference, explicit Euler",
+  "dt": null,
+  "dx": 1.0,
+  "grid": "L in [48, 96, 128]",
+  "boundary": "periodic",
+  "params": "see measured_by",
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "6828ea18cd06cf43faffaee1363a23ffbc59ca02b156ef521b0bd0f3bce87618"
+}

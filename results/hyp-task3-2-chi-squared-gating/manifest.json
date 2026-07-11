@@ -1,0 +1,24 @@
+{
+  "run_id": "hyp-task3-2-chi-squared-gating",
+  "equations": "dividing_protocell with R=kp*v*(1-chi(u))-kd*chi(u)^2 (deep-interior-only degradation)",
+  "solver": "pseudo-spectral (custom reaction law)",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "kp": 0.03,
+    "kd": 0.06,
+    "R0": 15
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+}

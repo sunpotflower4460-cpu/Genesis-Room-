@@ -1,0 +1,20 @@
+{
+  "run_id": "hyp-c1-coarsening-crossover",
+  "equations": "Model H vs C=0, long-time coarsening exponent crossover test",
+  "solver": "pseudo-spectral (g003_model_h_3d.run)",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": "C=2(Model H) vs C=0(control)",
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "cfada7252c35e3c0cf825a8b1ae9258e30a416d8ec3012ad61baadd68f90fa6c"
+}

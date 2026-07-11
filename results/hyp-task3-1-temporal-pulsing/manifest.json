@@ -1,0 +1,42 @@
+{
+  "run_id": "hyp-task3-1-temporal-pulsing",
+  "equations": "dividing_protocell, pulsed kp/kd (growth/rest square wave)",
+  "solver": "pseudo-spectral, custom pulsed time-stepping loop",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "growth": {
+      "M": 1.0,
+      "kappa": 1.0,
+      "W": 1.0,
+      "w": 0.15,
+      "D_v": 2.0,
+      "k_p": 0.03,
+      "k_d": 0.04
+    },
+    "rest": {
+      "M": 1.0,
+      "kappa": 1.0,
+      "W": 1.0,
+      "w": 0.15,
+      "D_v": 2.0,
+      "k_p": 0.0,
+      "k_d": 0.0
+    },
+    "T_on": 8.0,
+    "T_off": 40.0,
+    "n_cycles": 8
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "b855dd267faef09ca61f7cde7fc3ae0865113f30532249e3342b712cbffd7d62"
+}

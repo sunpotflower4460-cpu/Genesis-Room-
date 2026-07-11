@@ -1,0 +1,31 @@
+{
+  "run_id": "hyp-b1-nucleation-threshold",
+  "equations": "dividing_protocell (natural genesis) kp/kd sweep",
+  "solver": "pseudo-spectral (dividing_protocell_3d.run)",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    48,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": {
+    "swept": "kp,kd",
+    "base": {
+      "M": 1.0,
+      "kappa": 1.0,
+      "W": 1.0,
+      "w": 0.15,
+      "D_v": 2.0,
+      "k_p": 0.03,
+      "k_d": 0.04
+    }
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "711d545be52982706ea2c35c58bf23bf840223505dec3c0e26a891f3b874035b"
+}

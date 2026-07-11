@@ -1,0 +1,28 @@
+{
+  "run_id": "hyp-b2-phase2-fine-sweep",
+  "equations": "dividing_protocell droplet probe, R0 fine sweep near R_c (kd=0.04)",
+  "solver": "pseudo-spectral (dividing_protocell_3d.run_droplet_probe)",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.03,
+    "k_d": 0.04
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "76e70adfdc3d17629b5e03dc850c98a425e8ba9ef76e0dcca381f2b8a0cea0e0"
+}
