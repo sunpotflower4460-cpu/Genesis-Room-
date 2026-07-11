@@ -1,0 +1,30 @@
+{
+  "run_id": "req-d-flow-climb-C2-seed0001",
+  "equations": "du/dt+vel.grad(u)=M*lap(mu)+R; dv/dt=D_v*lap(v)-R; dvel/dt+vel.grad(vel)=-grad(p)+nu*lap(vel)+C*(mu*grad(u)), div(vel)=0; R=kp*v*chi(u)-kd*chi(u)^2 (compartmentalized + Model H flow)",
+  "solver": "pseudo-spectral, semi-implicit CH+diffusion, Leray projection, 2/3 dealiasing",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.05,
+    "k_d": 0.03,
+    "C": 2.0,
+    "nu": 1.0
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "bb0146097a22cfce0bf32de5c9d002917fd3d9eb39bdbf12833f2d321128da37"
+}
