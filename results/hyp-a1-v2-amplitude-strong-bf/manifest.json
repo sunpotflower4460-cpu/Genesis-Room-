@@ -1,0 +1,16 @@
+{
+  "run_id": "hyp-a1-v2-amplitude-strong-bf",
+  "equations": "complex Ginzburg-Landau, box-size scan round2 (amplitude-tracked)",
+  "solver": "real-space finite-difference, explicit Euler",
+  "dt": null,
+  "dx": 1.0,
+  "grid": "see measured_by",
+  "boundary": "periodic",
+  "params": "see measured_by",
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "7d161f0c12d9cbf5e2feb217ded15a429f910e2f713301a4d2032b30c06b29ff"
+}
