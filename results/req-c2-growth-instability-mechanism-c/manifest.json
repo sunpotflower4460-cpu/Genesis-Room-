@@ -1,0 +1,25 @@
+{
+  "run_id": "req-c2-growth-instability-mechanism-c",
+  "equations": "du/dt=M*lap(mu)+R; dv/dt=D_v*lap(v)-R+k_feed*(v_target-v) (chemostat供給で無制限成長); R=kp*v*chi(u)-kd*chi(u)^2. 初期条件は等方球(微小noiseのみ、軸バイアスなし)",
+  "solver": "pseudo-spectral, semi-implicit CH + implicit diffusion + chemostat feed",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "k_feed_fast": 0.08,
+    "v_target_fast": 2.0,
+    "k_feed_slow": 0.0,
+    "v_target_slow": 0.5
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "9e0661f11f943c4ee2ca34f16f3acccb44f26f2f4db9c68f1083b20c800c6b67"
+}

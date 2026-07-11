@@ -1,0 +1,162 @@
+{
+  "run_id": "req-c2-growth-instability-mechanism-c",
+  "emergence": {
+    "reached_level": 4,
+    "candidate_level": 5,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": false,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "fast_growth": {
+        "aspect_series": [
+          1.012,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0038,
+          1.0,
+          1.0,
+          1.004,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "aspect_initial": 1.0119704237184715,
+        "aspect_final": 1.0,
+        "vol_initial": 2492.0,
+        "vol_final": 85711.0,
+        "n_final": 1,
+        "diverged": false,
+        "mass_drift": 1.7142644236342486
+      },
+      "slow_growth_control": {
+        "aspect_series": [
+          1.012,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0069,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "aspect_initial": 1.0119704237184715,
+        "aspect_final": 1.0,
+        "vol_initial": 2492.0,
+        "vol_final": 7689.0,
+        "n_final": 1,
+        "diverged": false,
+        "mass_drift": -4.440892098500626e-16
+      },
+      "elongation_gain_fast": -0.012,
+      "elongation_gain_slow_control": -0.012,
+      "mechanism_c_supported": false
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "N"
+    }
+  },
+  "integrity": {
+    "conservation_drift": 1.7142644236342486,
+    "resolution_dependence": {
+      "64x64x64": 1
+    },
+    "seed_reproducibility": {
+      "1": 4
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "slow_growth (k_feed=0, decisive control)",
+        "result": "aspect gain=-0.0120 vs fast=-0.0120"
+      }
+    ]
+  }
+}
