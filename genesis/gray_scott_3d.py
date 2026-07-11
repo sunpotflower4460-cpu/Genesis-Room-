@@ -171,8 +171,10 @@ def main():
                       label="mitosis_region",
                       notes_extra="mitosisパラメータ域(既知の自己複製スポット)。")
 
-    print("\n[安定スポット対照] F=0.030 k=0.060 (既知の非分裂/安定パターン域)")
-    stable_params = dict(DEFAULTS, F=0.030, k=0.060)
+    print("\n[安定スポット対照] F=0.022 k=0.051 (worm/stripe域、64^3・6000stepの小規模予備調査で"
+         "n_spots=1が持続することを確認済み。最初に想定したF=0.030/k=0.060は予備調査で分裂した"
+         "ため差し替え)")
+    stable_params = dict(DEFAULTS, F=0.022, k=0.051)
     classify_and_save("req-d2-grayscott-stable-control-seed0001", shape, steps, seed=1,
                       params=stable_params, label="stable_region_control",
                       notes_extra="決定的対照: 安定パターン域では分裂しないことを期待"
