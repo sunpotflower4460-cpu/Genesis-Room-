@@ -1,0 +1,28 @@
+{
+  "run_id": "hyp-b2-phase1-coarse-bracket",
+  "equations": "dividing_protocell droplet probe, R0 coarse sweep (safe window)",
+  "solver": "pseudo-spectral (dividing_protocell_3d.run_droplet_probe)",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.03,
+    "k_d": 0.06
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "f598ca4692346481a5e9630c6f356fe1ca53a6d552119b55d3716f35c6e37c77"
+}
