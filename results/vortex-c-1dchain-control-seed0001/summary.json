@@ -1,0 +1,98 @@
+{
+  "run_id": "vortex-c-1dchain-control-seed0001",
+  "emergence": {
+    "reached_level": 4,
+    "candidate_level": 5,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": true,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "config": "chain_1D",
+      "n_vortex_points": 4,
+      "bond_len": 8.277,
+      "n_2cells": 0,
+      "triangles_per_vertex": 0.0,
+      "correlation_dim": 1.042,
+      "ball_dim": 0.485,
+      "euler_char": 1,
+      "n_components": 1,
+      "n_edges": 3,
+      "dimension_lifted_1_to_2": false,
+      "ball_growth": [
+        [
+          0,
+          1.0
+        ],
+        [
+          1,
+          2.5
+        ],
+        [
+          2,
+          3.5
+        ],
+        [
+          3,
+          4.0
+        ],
+        [
+          4,
+          4.0
+        ],
+        [
+          5,
+          4.0
+        ],
+        [
+          6,
+          4.0
+        ]
+      ],
+      "energy_drift_frac": -6e-05,
+      "honest_floor": "correlation_dim=位置(埋め込み)の幾何次元(固定格子); n_2cells=関係が三角形を閉じる創発量。空間自体の創発ではない。"
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "N"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -5.6986423153370734e-05,
+    "resolution_dependence": {
+      "64x64x64": 0
+    },
+    "seed_reproducibility": {
+      "1": 4
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": true,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "dipole gas & 1D chain (edges-only null: expect n_2cells=0, dim~1)",
+        "result": "this room n_2cells=0 corr_dim=1.042 (compare companion controls)"
+      }
+    ]
+  }
+}
