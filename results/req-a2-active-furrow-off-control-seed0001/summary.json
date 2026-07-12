@@ -1,0 +1,320 @@
+{
+  "run_id": "req-a2-active-furrow-off-control-seed0001",
+  "emergence": {
+    "reached_level": 6,
+    "candidate_level": 7,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": false,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": true,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "radius": 10,
+      "length": 25,
+      "aspect_ratio": 2.5,
+      "furrow_on": false,
+      "f_str": 0.0,
+      "division_mode": "stable_no_division",
+      "daughter_size_ratio": null,
+      "division_time": null,
+      "max_significant_count": 1,
+      "final_significant_count": 1,
+      "max_u_bg": 0.17859142985343862,
+      "u_sp_low": 0.21132486540518713,
+      "background_clean_throughout": true,
+      "significant_count_series": [
+        [
+          0.0,
+          1
+        ],
+        [
+          2.5,
+          1
+        ],
+        [
+          5.0,
+          1
+        ],
+        [
+          7.5,
+          1
+        ],
+        [
+          10.0,
+          1
+        ],
+        [
+          12.5,
+          1
+        ],
+        [
+          15.0,
+          1
+        ],
+        [
+          17.5,
+          1
+        ],
+        [
+          20.0,
+          1
+        ],
+        [
+          22.5,
+          1
+        ],
+        [
+          25.0,
+          1
+        ],
+        [
+          27.5,
+          1
+        ],
+        [
+          30.0,
+          1
+        ],
+        [
+          32.5,
+          1
+        ],
+        [
+          35.0,
+          1
+        ],
+        [
+          37.5,
+          1
+        ],
+        [
+          40.0,
+          1
+        ],
+        [
+          42.5,
+          1
+        ],
+        [
+          45.0,
+          1
+        ],
+        [
+          47.5,
+          1
+        ],
+        [
+          50.0,
+          1
+        ],
+        [
+          52.5,
+          1
+        ],
+        [
+          55.0,
+          1
+        ],
+        [
+          57.5,
+          1
+        ],
+        [
+          60.0,
+          1
+        ],
+        [
+          62.5,
+          1
+        ],
+        [
+          65.0,
+          1
+        ],
+        [
+          67.5,
+          1
+        ],
+        [
+          70.0,
+          1
+        ],
+        [
+          72.5,
+          1
+        ],
+        [
+          75.0,
+          1
+        ],
+        [
+          77.5,
+          1
+        ],
+        [
+          80.0,
+          1
+        ],
+        [
+          82.5,
+          1
+        ],
+        [
+          85.0,
+          1
+        ],
+        [
+          87.5,
+          1
+        ],
+        [
+          90.0,
+          1
+        ],
+        [
+          92.5,
+          1
+        ],
+        [
+          95.0,
+          1
+        ],
+        [
+          97.5,
+          1
+        ],
+        [
+          100.0,
+          1
+        ],
+        [
+          102.5,
+          1
+        ],
+        [
+          105.0,
+          1
+        ],
+        [
+          107.5,
+          1
+        ],
+        [
+          110.0,
+          1
+        ],
+        [
+          112.5,
+          1
+        ],
+        [
+          115.0,
+          1
+        ],
+        [
+          117.5,
+          1
+        ],
+        [
+          120.0,
+          1
+        ],
+        [
+          122.5,
+          1
+        ],
+        [
+          125.0,
+          1
+        ],
+        [
+          127.5,
+          1
+        ],
+        [
+          130.0,
+          1
+        ],
+        [
+          132.5,
+          1
+        ],
+        [
+          135.0,
+          1
+        ],
+        [
+          137.5,
+          1
+        ],
+        [
+          140.0,
+          1
+        ],
+        [
+          142.5,
+          1
+        ],
+        [
+          145.0,
+          1
+        ],
+        [
+          147.5,
+          1
+        ],
+        [
+          150.0,
+          1
+        ]
+      ],
+      "mass_drift": -3.1752378504279477e-13,
+      "geom_series_sampled": []
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "S"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -3.1752378504279477e-13,
+    "resolution_dependence": {
+      "96x96x96": 1
+    },
+    "seed_reproducibility": {
+      "1": 6
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "furrow OFF (f_str=0, decisive control 1)",
+        "result": "see companion room -- expect no division"
+      },
+      {
+        "name": "u_bg tracked throughout (nucleation vs pinch discriminator)",
+        "result": "max_u_bg=0.1786 vs u_sp_low=0.2113"
+      }
+    ]
+  }
+}

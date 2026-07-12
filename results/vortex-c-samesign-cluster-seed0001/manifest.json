@@ -1,0 +1,25 @@
+{
+  "run_id": "vortex-c-samesign-cluster-seed0001",
+  "equations": "conservative GPE (gamma=0); vortex cores -> relational complex (bond=cores within adaptive bond_len; 2-cell=mutually bonded triple)",
+  "solver": "split-step Fourier (Strang) + relational complex dimension (ball/correlation)",
+  "dt": 0.02,
+  "dx": 0.5,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "g": 1.0,
+    "mu": 1.0,
+    "gamma": 0.0,
+    "config": "samesign_cluster_2D"
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "4429d362a0f65912bf4c4fb6aa1871bd88ec179a9a59f10341bc3d76263baf9c"
+}

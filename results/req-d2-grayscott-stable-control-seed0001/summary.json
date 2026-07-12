@@ -1,0 +1,191 @@
+{
+  "run_id": "req-d2-grayscott-stable-control-seed0001",
+  "emergence": {
+    "reached_level": 7,
+    "candidate_level": 8,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": true,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "label": "stable_region_control",
+      "F": 0.022,
+      "k": 0.051,
+      "n_spots_initial": 1,
+      "n_spots_max": 8,
+      "n_spots_final": 2,
+      "replicated_passively": true,
+      "n_series_sampled": [
+        [
+          0.0,
+          1
+        ],
+        [
+          200.0,
+          1
+        ],
+        [
+          400.0,
+          1
+        ],
+        [
+          600.0,
+          1
+        ],
+        [
+          800.0,
+          1
+        ],
+        [
+          1000.0,
+          1
+        ],
+        [
+          1200.0,
+          1
+        ],
+        [
+          1400.0,
+          1
+        ],
+        [
+          1600.0,
+          1
+        ],
+        [
+          1800.0,
+          1
+        ],
+        [
+          2000.0,
+          1
+        ],
+        [
+          2200.0,
+          1
+        ],
+        [
+          2400.0,
+          1
+        ],
+        [
+          2600.0,
+          1
+        ],
+        [
+          2800.0,
+          1
+        ],
+        [
+          3000.0,
+          2
+        ],
+        [
+          3200.0,
+          1
+        ],
+        [
+          3400.0,
+          6
+        ],
+        [
+          3600.0,
+          5
+        ],
+        [
+          3800.0,
+          1
+        ],
+        [
+          4000.0,
+          1
+        ],
+        [
+          4200.0,
+          8
+        ],
+        [
+          4400.0,
+          1
+        ],
+        [
+          4600.0,
+          8
+        ],
+        [
+          4800.0,
+          1
+        ],
+        [
+          5000.0,
+          1
+        ],
+        [
+          5200.0,
+          4
+        ],
+        [
+          5400.0,
+          3
+        ],
+        [
+          5600.0,
+          2
+        ],
+        [
+          5800.0,
+          3
+        ],
+        [
+          5999.0,
+          2
+        ]
+      ],
+      "sustained_growth": false,
+      "bounded_oscillation": true,
+      "honest_caveat": "n_spots系列は単調増加ではなく1と最大8の間を反復振動し(t=2800までの時間の約47パーセントはn=1のまま休眠)、最終的にn=2に落ち着く(最大値の25パーセントまで低下)。mitosis域(F=0.0367,k=0.0649)は単調に増加しn=30-35で安定するのと対照的。単純なreplicated判定(n_max大なる1かつn_final>=2)は両者を同じに分類するが、生データは質的に異なる: mitosisは持続的な自己複製、こちらは境界のある一時的な分岐・再融合(sustained_growthでない)。falsification条件の「対照でも同様に分裂する」を字義通りには満たすが、その中身(持続的増殖 vs 有界振動)は明確に異なるため、パラメータ依存性という主張は生データレベルでは支持される(部分訂正)。"
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "N"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -0.3418537248783249,
+    "resolution_dependence": {
+      "64x64x64": 8
+    },
+    "seed_reproducibility": {
+      "1": 7
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "membrane-bound compartmentalized droplet (companion model)",
+        "result": "furrow OFFでは分裂しない(req-a2 decisive control 1参照)、膜(相分離境界)が受動分裂を妨げる、との対比"
+      }
+    ]
+  }
+}

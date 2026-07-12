@@ -1,0 +1,29 @@
+{
+  "run_id": "req-a2-active-furrow-on-seed0002",
+  "equations": "du/dt=M*lap(mu)+R+act, mu=f'(u)-kappa*lap(u); R=kp*v*chi(u)-kd*chi(u)^2; act=-f_str*(0.3+prog)*exp(-(s/sigma)^2)*chi(u), s=coord along dynamic (PCA-derived) long axis, prog=min(1,t/(0.6T))",
+  "solver": "pseudo-spectral, semi-implicit CH + implicit diffusion, explicit furrow force",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    96,
+    96,
+    96
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "W": 1.0,
+    "w": 0.15,
+    "D_v": 2.0,
+    "k_p": 0.05,
+    "k_d": 0.02,
+    "f_str": 0.14
+  },
+  "seed": 2,
+  "seeds": [
+    2
+  ],
+  "commit": null,
+  "checksum": "7dfba45a3f77b319ebdb79f08722206161bba25fc8864f360ef7da04b03c372d"
+}
