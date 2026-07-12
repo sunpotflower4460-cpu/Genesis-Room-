@@ -1,0 +1,23 @@
+{
+  "run_id": "search-random-ic-3d-campaign-seed0000",
+  "equations": "dA/dt = A + (1+i*b)*lap(A) - (1+i*c)*|A|^2*A  (complex Ginzburg-Landau, genesis/g001_cgl_3d.py, 法則固定・変更なし)",
+  "solver": "real-space finite-difference (periodic np.roll Laplacian), explicit Euler",
+  "dt": 0.03320754716981132,
+  "dx": 1.0,
+  "grid": [
+    28,
+    28,
+    28
+  ],
+  "boundary": "periodic",
+  "params": {
+    "b": 1.0,
+    "c": -0.7
+  },
+  "seed": 0,
+  "seeds": [
+    0
+  ],
+  "commit": null,
+  "checksum": "04b6fc841ed793e243e036863adf2a662b2f4310b33ecc79fc233492605203cf"
+}

@@ -1,0 +1,23 @@
+{
+  "run_id": "search-random-ic-3d-deep-eval-transience",
+  "equations": "同上(CGL, 法則固定)",
+  "solver": "real-space finite-difference, explicit Euler",
+  "dt": null,
+  "dx": 1.0,
+  "grid": [
+    48,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": {
+    "b": 1.0,
+    "c": -0.7
+  },
+  "seed": 999,
+  "seeds": [
+    999
+  ],
+  "commit": null,
+  "checksum": "c2c4f3dd7e3062985fdeae10bc20d8c1e21579b08476ab04b2890b9b67d7a314"
+}

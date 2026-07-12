@@ -1,0 +1,33 @@
+{
+  "run_id": "search-random-ic-3d-law-variant-bf-seed0000",
+  "equations": "dA/dt = A + (1+i*b)*lap(A) - (1+i*c)*|A|^2*A  (mutation_type=law_variant, (b,c)のみ変更・方程式の形は不変)",
+  "solver": "real-space finite-difference, explicit Euler",
+  "dt": null,
+  "dx": 1.0,
+  "grid": [
+    28,
+    28,
+    28
+  ],
+  "boundary": "periodic",
+  "params": {
+    "b_range": [
+      0.0,
+      1.5
+    ],
+    "c_range": [
+      -2.0,
+      1.0
+    ],
+    "baseline": {
+      "b": 1.0,
+      "c": -0.7
+    }
+  },
+  "seed": 777,
+  "seeds": [
+    777
+  ],
+  "commit": null,
+  "checksum": "433b7b98d37836d34425ef0db48748441f559bf6cc11919509745261fd62757d"
+}
