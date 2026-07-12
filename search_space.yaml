@@ -1,0 +1,55 @@
+# search_space.yaml -- 大量ランダムIC探索(3D)で変更してよい範囲の明文化。
+# docs/AI_EXPERIMENT_POLICY.md §2「AIが変更してよいもの（始原側のみ）」に基づく。
+# ここに書かれた範囲だけを genesis/ic_families_3d.py がランダムに振る。法則(genesis/g001_cgl_3d.py
+# のCGL方程式、b・c・格子・境界)はこのファイルでは変更しない — 変えるのは初期条件だけ。
+
+law_fixed:
+  model: g001_cgl_3d
+  equation: "dA/dt = A + (1+i*b)*lap(A) - (1+i*c)*|A|^2*A"
+  params: {b: 1.0, c: -0.7}   # Claude 2D予備調査の検証済みregime、法則側は固定
+  boundary: periodic
+  note: "law_variant(b,cを振る)は別枠(より厳しい監査つき、genesis/search_random_ic_3d.py の
+        law_variant_sweep)。IC-onlyの本探索では触らない。"
+
+search_space:
+  initial_state:
+    # 全familyに共通の背景ノイズ床(一様近ゼロ+ノイズという法則側の前提)
+    noise_floor: {fixed: 0.01}
+    spectral_powerlaw:
+      beta: {min: 0.5, max: 4.0}          # べき則指数 P(k)~|k|^-beta
+      amp: {min: 0.01, max: 0.3}
+    bandpass:
+      klo: {min: 0.5, max: 8.0}            # 波数帯の下端
+      kw: {min: 0.5, max: 4.0}             # 波数帯の幅
+      amp: {min: 0.01, max: 0.3}
+    white_amp:
+      amp: {min: 0.005, max: 0.5}
+    seeds_phase:
+      n_seeds: {min: 2, max: 10}
+      width: {min: 1.5, max: 6.0}
+      amp: {min: 0.1, max: 0.8}
+    vortex_charges:
+      n_defects: {min: 1, max: 4}
+      amp: {min: 0.1, max: 0.6}
+      charge_choices: {fixed: [-2, -1, 1, 2]}
+      mode: {fixed: [line, loop]}          # 3D特有: 周期箱を貫く直線 or 局所渦リング
+    patches:
+      n_patches: {min: 2, max: 8}
+      radius_lo: {min: 2.0, max: 6.0}
+      radius_hi: {min: 6.0, max: 14.0}
+      amp: {min: 0.1, max: 0.6}
+    seeds:
+      n_seeds: {min: 2, max: 10}
+      width: {min: 1.5, max: 6.0}
+      amp: {min: 0.1, max: 0.8}
+  grid:
+    shape: {fixed: [28, 28, 28]}           # 高速スクリーン用(finding-size follow-upは別途)
+    dx: {fixed: 1.0}
+  boundary_conditions:
+    allowed: [periodic]
+
+law_variant_search_space:
+  # 余力枠。より厳しい監査(物理的由来・対称性・次元整合・保存則・熱力学整合・既知極限・
+  # 非符号化=第8監査)を通すことが前提。docs/AI_EXPERIMENT_POLICY.md §4参照。
+  b: {min: 0.0, max: 1.5}
+  c: {min: -2.0, max: 1.0}
