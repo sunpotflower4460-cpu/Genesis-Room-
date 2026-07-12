@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from common import io  # noqa: E402
 from genesis import g001_cgl_3d as cgl  # noqa: E402
+from genesis.g001_cgl_3d import _classify_defect_dynamics  # noqa: E402
 from genesis import ic_families_3d as icf  # noqa: E402
 from genesis.ic_search_followup import deep_eval_candidate, law_variant_sweep  # noqa: E402
 from genesis.search_random_ic_3d import LAW_PARAMS_DEFAULT  # noqa: E402
@@ -234,17 +235,26 @@ def save_law_variant_room():
     long_variant = deep_eval_candidate(best_ic[0], best_ic[1], (48, 48, 48), 60.0,
                                        law_params={"b": 1.052, "c": -1.684}, rng_seed=999)
 
+    # --- 7+8監査による訂正(留意点) ---
+    # sustained_multi_grain_fraction は「blob"数"が[2,12]に留まる時間割合」であって、
+    # 「同一個体が時間を通じて持続する」ことの測定ではない。defect-mediated turbulenceは
+    # defectを絶えず生成・消滅させるため、"数"の持続は"同一性"の持続を含意しない
+    # (object-trackingで個体にIDを振り追跡するまでは確定できない、と監査で指摘された)。
+    # よってpersistent_individuality=Trueの主張を撤回し、reached_levelを訂正する。
+    bf_blobs_series = [b for (_, b) in long_variant["blobs_series"]]
+    defect_dyn = _classify_defect_dynamics(bf_blobs_series, dt=None, snapshot_every=None)
+
     detected_keys = ["difference", "localization", "spontaneous_motion", "circulation",
                       "persistent_individuality", "co_differentiation", "self_maintaining_closure",
                       "growth_division_inheritance", "selection_open_ended"]
     detected = {k: False for k in detected_keys}
     detected["difference"] = True
     detected["localization"] = True
-    detected["persistent_individuality"] = bool(long_variant["sustained_multi_grain_fraction"] > 0.5)
+    detected["persistent_individuality"] = False  # 訂正: object-tracking無しでは主張しない
 
+    reached = 2  # localizationのみを確定として計上(保守的)
     report = {
-        "reached_level": 4 if detected["persistent_individuality"] else 2,
-        "candidate_level": 5 if detected["persistent_individuality"] else 3,
+        "reached_level": reached, "candidate_level": reached + 1,
         "uninterrupted_from_zero": True, "level_detected_by_measurement": True,
         "detected": detected,
         "measured_by": {
@@ -262,8 +272,22 @@ def save_law_variant_room():
                                      "sustained_multi_grain_fraction": long_variant["sustained_multi_grain_fraction"],
                                      "blobs_series": long_variant["blobs_series"]},
             "sweep_top15": sorted(sweep, key=lambda r: -r["score_max"])[:15],
+            "audit_correction": {
+                "issue": "当初reached_level=4(persistent_individuality=True)としていたが、"
+                        "sustained_multi_grain_fraction=0.88は'blob数が[2,12]に留まる時間割合'"
+                        "であり'同一個体が持続する'ことの証拠ではない。7+8監査で指摘された"
+                        "通り、defect-mediated turbulenceはdefectを絶えず生成・消滅させるため"
+                        "'数の持続'≠'同一性の持続'。",
+                "raw_blobs_series_inspected": bf_blobs_series,
+                "defect_dynamics_classification": defect_dyn,
+                "corrected_reached_level": reached,
+                "note": "defect_dynamics_classificationはg001_cgl_3d._classify_defect_dynamicsを"
+                        "そのまま流用(同じ判定ロジックを別の文脈で使い回すことで恣意性を避けた)。"
+                        "still_coarsening=Trueが出ており、'定常的なactive状態'とも断定できない"
+                        "(保守的にLevel3の主張もしない)。真にLevel4を主張するには、同一grainに"
+                        "IDを振り時間を通じて追跡するobject-trackingが必要(次アクション候補1)。"},
         },
-        "purity": {"per_object_labels": True, "external_optimum": False, "role": "E"},
+        "purity": {"per_object_labels": False, "external_optimum": False, "role": "E"},
     }
     integrity = io.integrity_block(
         conservation_drift=0.0, resolutions_result={"28x28x28": len(sweep), "48x48x48": 2},
@@ -308,7 +332,12 @@ def save_law_variant_room():
              "固定。1+bc<0(Benjamin-Feir不安定)のサンプルは全て(n=%d)score_max=5.70の最大値、"
              "1+bc>=0(n=%d)は平均%.3f。相関=%.3f。決定的な長時間比較(48^3,t_final=60,同一IC): "
              "baseline(1+bc=0.3)のsustained_multi_grain_fraction=%.2f vs BF不安定"
-             "(1+bc=-0.772)=%.2f——法則regimeの変更だけで持続性が劇的に変わることを確認した。"
+             "(1+bc=-0.772)=%.2f——法則regimeの変更だけで'多粒として持続する時間割合'が"
+             "劇的に変わることを確認した。[7+8監査での訂正] 当初reached_level=4(persistent_"
+             "individuality)としていたが、これは'blob数の持続'であって'同一個体の追跡'では"
+             "ないと指摘され、reached_level=2へ保守的に降格した(measured_by.audit_correction"
+             "参照)。defect-mediated turbulenceは'乱流で粗大化を防ぐ'のであって'清潔な持続"
+             "個体を作る'のではない、という区別を正直に記録する。"
              % (len(sweep), len(bf_neg), len(bf_pos),
                 float(np.mean(bf_pos)) if bf_pos else 0.0, corr,
                 long_baseline["sustained_multi_grain_fraction"],

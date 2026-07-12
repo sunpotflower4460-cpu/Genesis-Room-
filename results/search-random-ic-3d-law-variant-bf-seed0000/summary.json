@@ -1,8 +1,8 @@
 {
   "run_id": "search-random-ic-3d-law-variant-bf-seed0000",
   "emergence": {
-    "reached_level": 4,
-    "candidate_level": 5,
+    "reached_level": 2,
+    "candidate_level": 3,
     "uninterrupted_from_zero": true,
     "level_detected_by_measurement": true,
     "detected": {
@@ -10,7 +10,7 @@
       "localization": true,
       "spontaneous_motion": false,
       "circulation": false,
-      "persistent_individuality": true,
+      "persistent_individuality": false,
       "co_differentiation": false,
       "self_maintaining_closure": false,
       "growth_division_inheritance": false,
@@ -376,10 +376,50 @@
           "diverged": false,
           "is_baseline": true
         }
-      ]
+      ],
+      "audit_correction": {
+        "issue": "当初reached_level=4(persistent_individuality=True)としていたが、sustained_multi_grain_fraction=0.88は'blob数が[2,12]に留まる時間割合'であり'同一個体が持続する'ことの証拠ではない。7+8監査で指摘された通り、defect-mediated turbulenceはdefectを絶えず生成・消滅させるため'数の持続'≠'同一性の持続'。",
+        "raw_blobs_series_inspected": [
+          53,
+          3,
+          2,
+          10,
+          7,
+          9,
+          3,
+          2,
+          4,
+          4,
+          1,
+          2,
+          1,
+          5,
+          5,
+          4,
+          2,
+          3,
+          6,
+          4,
+          5,
+          8,
+          5,
+          4,
+          3
+        ],
+        "defect_dynamics_classification": {
+          "tail_mean": 4.230769230769231,
+          "still_coarsening": true,
+          "active": false,
+          "extinct": false,
+          "trend_relative": 0.439,
+          "residual_relative_std": 0.3856
+        },
+        "corrected_reached_level": 2,
+        "note": "defect_dynamics_classificationはg001_cgl_3d._classify_defect_dynamicsをそのまま流用(同じ判定ロジックを別の文脈で使い回すことで恣意性を避けた)。still_coarsening=Trueが出ており、'定常的なactive状態'とも断定できない(保守的にLevel3の主張もしない)。真にLevel4を主張するには、同一grainにIDを振り時間を通じて追跡するobject-trackingが必要(次アクション候補1)。"
+      }
     },
     "purity": {
-      "per_object_labels": true,
+      "per_object_labels": false,
       "external_optimum": false,
       "role": "E"
     }
@@ -391,7 +431,7 @@
       "48x48x48": 2
     },
     "seed_reproducibility": {
-      "777": 4
+      "777": 2
     },
     "reproducible_across_seeds": true,
     "nan_or_uncontrolled_clip": false,

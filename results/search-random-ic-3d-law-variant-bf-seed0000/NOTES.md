@@ -8,7 +8,7 @@
     "localization": true,
     "spontaneous_motion": false,
     "circulation": false,
-    "persistent_individuality": true,
+    "persistent_individuality": false,
     "co_differentiation": false,
     "self_maintaining_closure": false,
     "growth_division_inheritance": false,
@@ -374,13 +374,53 @@
         "diverged": false,
         "is_baseline": true
       }
-    ]
+    ],
+    "audit_correction": {
+      "issue": "当初reached_level=4(persistent_individuality=True)としていたが、sustained_multi_grain_fraction=0.88は'blob数が[2,12]に留まる時間割合'であり'同一個体が持続する'ことの証拠ではない。7+8監査で指摘された通り、defect-mediated turbulenceはdefectを絶えず生成・消滅させるため'数の持続'≠'同一性の持続'。",
+      "raw_blobs_series_inspected": [
+        53,
+        3,
+        2,
+        10,
+        7,
+        9,
+        3,
+        2,
+        4,
+        4,
+        1,
+        2,
+        1,
+        5,
+        5,
+        4,
+        2,
+        3,
+        6,
+        4,
+        5,
+        8,
+        5,
+        4,
+        3
+      ],
+      "defect_dynamics_classification": {
+        "tail_mean": 4.230769230769231,
+        "still_coarsening": true,
+        "active": false,
+        "extinct": false,
+        "trend_relative": 0.439,
+        "residual_relative_std": 0.3856
+      },
+      "corrected_reached_level": 2,
+      "note": "defect_dynamics_classificationはg001_cgl_3d._classify_defect_dynamicsをそのまま流用(同じ判定ロジックを別の文脈で使い回すことで恣意性を避けた)。still_coarsening=Trueが出ており、'定常的なactive状態'とも断定できない(保守的にLevel3の主張もしない)。真にLevel4を主張するには、同一grainにIDを振り時間を通じて追跡するobject-trackingが必要(次アクション候補1)。"
+    }
   }
 }
 ```
 
 ## 出なかったもの・未達
-reached_level=4, candidate_level=5
+reached_level=2, candidate_level=3
 
 ## EXPLORATION 所見
-law_variant余力枠。n=61件を(b,c)ランダムサンプルでスイープ、IC(spectral_powerlaw)は固定。1+bc<0(Benjamin-Feir不安定)のサンプルは全て(n=9)score_max=5.70の最大値、1+bc>=0(n=52)は平均3.892。相関=-0.721。決定的な長時間比較(48^3,t_final=60,同一IC): baseline(1+bc=0.3)のsustained_multi_grain_fraction=0.04 vs BF不安定(1+bc=-0.772)=0.88——法則regimeの変更だけで持続性が劇的に変わることを確認した。
+law_variant余力枠。n=61件を(b,c)ランダムサンプルでスイープ、IC(spectral_powerlaw)は固定。1+bc<0(Benjamin-Feir不安定)のサンプルは全て(n=9)score_max=5.70の最大値、1+bc>=0(n=52)は平均3.892。相関=-0.721。決定的な長時間比較(48^3,t_final=60,同一IC): baseline(1+bc=0.3)のsustained_multi_grain_fraction=0.04 vs BF不安定(1+bc=-0.772)=0.88——法則regimeの変更だけで'多粒として持続する時間割合'が劇的に変わることを確認した。[7+8監査での訂正] 当初reached_level=4(persistent_individuality)としていたが、これは'blob数の持続'であって'同一個体の追跡'ではないと指摘され、reached_level=2へ保守的に降格した(measured_by.audit_correction参照)。defect-mediated turbulenceは'乱流で粗大化を防ぐ'のであって'清潔な持続個体を作る'のではない、という区別を正直に記録する。
