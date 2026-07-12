@@ -1,0 +1,23 @@
+{
+  "run_id": "l3-route-b-frozen-control-b0c0-seed0001",
+  "equations": "dA/dt = A + (1+i*b)*lap(A) - (1+i*c)*|A|^2*A  (CGL, 法則固定)",
+  "solver": "real-space finite-difference (periodic np.roll Laplacian), explicit Euler",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    48,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": {
+    "b": 0.0,
+    "c": 0.0
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "b409157df88810f266762896488bb81ca11bdbc0d33fac121c0861ac7a50d71a"
+}

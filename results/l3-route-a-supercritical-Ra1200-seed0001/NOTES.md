@@ -1,0 +1,130 @@
+# NOTES — l3-route-a-supercritical-Ra1200-seed0001
+
+## 出たもの（measured_by / detected）
+```json
+{
+  "detected": {
+    "difference": true,
+    "localization": true,
+    "spontaneous_motion": true,
+    "circulation": true,
+    "persistent_individuality": false,
+    "co_differentiation": false,
+    "self_maintaining_closure": false,
+    "growth_division_inheritance": false,
+    "selection_open_ended": false
+  },
+  "measured_by": {
+    "Ra": 1200.0,
+    "Ra_c_theory": 657.5113644795163,
+    "Pr": 1.0,
+    "grid": [
+      17,
+      24,
+      24
+    ],
+    "t_final": 3.0,
+    "dt": 0.0005,
+    "diverged": false,
+    "w_rms_series": [
+      9.1e-05,
+      0.000559,
+      0.000871,
+      0.0015,
+      0.002664,
+      0.004812,
+      0.008803,
+      0.016256,
+      0.030231,
+      0.056518,
+      0.106057,
+      0.199473,
+      0.375189,
+      0.701747,
+      1.283604,
+      2.199662,
+      3.286434,
+      4.085017,
+      4.41711,
+      4.515731,
+      4.566067,
+      4.628139,
+      4.712464,
+      4.798025,
+      4.845187
+    ],
+    "circulation_proxy_series": [
+      1.8e-05,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1e-06,
+      2e-06,
+      6e-06,
+      1.9e-05,
+      5.8e-05,
+      0.000185,
+      0.000595,
+      0.001926,
+      0.006218,
+      0.019372,
+      0.053332,
+      0.107467,
+      0.133139,
+      0.148126,
+      0.19445,
+      0.250843,
+      0.31135,
+      0.355047,
+      0.370581,
+      0.383825
+    ],
+    "fitted_growth_rate": 3.6733108002153285,
+    "growing": true,
+    "circulation_nonzero": true,
+    "coherence_series": [
+      0.3392,
+      0.1928,
+      0.1235,
+      0.1075,
+      0.0886,
+      0.0788,
+      0.0927,
+      0.1323,
+      0.1601,
+      0.1939,
+      0.2032,
+      0.2209,
+      0.2495,
+      0.3041,
+      0.1824,
+      0.2384,
+      0.3526,
+      0.3928,
+      0.431,
+      0.4821,
+      0.4577,
+      0.3605,
+      0.3932,
+      0.4112
+    ],
+    "mean_coherence": 0.2579,
+    "early_phase_mean_coherence": 0.1611,
+    "late_phase_mean_coherence": 0.3546,
+    "coherent_gate_pass": true,
+    "l3_gate": {
+      "com_velocity_nonzero": true,
+      "circulation_nonzero": true,
+      "coherent_while_growing": true
+    },
+    "honest_limitation": "axis順序バグ修正後、Ra=1200・t_final=3で数値発散は解消し、非線形飽和(w_rmsの伸びの明確な頭打ち)まで到達を確認した。ただし完全な定常状態(w_rmsが時間的に一定)への収束は本run終了時点では確認できておらず(循環proxyはまだ緩やかに増加中)、『飽和しつつある』段階の観測である。coherenceは位相相関の全区間平均でなく後期(構造形成後)半分の平均で判定する——初期ノイズ遷移は多モード競合でcoherenceが見かけ上低くなるため(ルートBと同じ手法)。"
+  }
+}
+```
+
+## 出なかったもの・未達
+reached_level=3, candidate_level=4
+
+## EXPLORATION 所見
+L3-ルートA [超臨界: coherentな成長->非線形飽和(定常ロール)を期待。axis順序バグ修正後、Ra=1200・t_final=3で飽和傾向を確認済み。] Ra=1200 (Ra_c理論値=657.5), t_final=3.00, grid=(17, 24, 24)。w_rms: ['9.12e-05', '5.59e-04', '8.71e-04', '1.50e-03', '2.66e-03', '4.81e-03', '8.80e-03', '1.63e-02', '3.02e-02', '5.65e-02', '1.06e-01', '1.99e-01', '3.75e-01', '7.02e-01', '1.28e+00', '2.20e+00', '3.29e+00', '4.09e+00', '4.42e+00', '4.52e+00', '4.57e+00', '4.63e+00', '4.71e+00', '4.80e+00', '4.85e+00']。fitted_growth_rate=3.6733108002153285, growing=True, circulation_nonzero=True, mean_coherence=0.2578641232453083 (early=0.16109985758470322, late=0.35462838890591325, coherent_gate=True)。diverged=False。超臨界: coherentな成長->非線形飽和(定常ロール)を期待。axis順序バグ修正後、Ra=1200・t_final=3で飽和傾向を確認済み。

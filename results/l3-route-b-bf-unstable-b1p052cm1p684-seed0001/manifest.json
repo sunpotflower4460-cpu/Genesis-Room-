@@ -1,0 +1,23 @@
+{
+  "run_id": "l3-route-b-bf-unstable-b1p052cm1p684-seed0001",
+  "equations": "dA/dt = A + (1+i*b)*lap(A) - (1+i*c)*|A|^2*A  (CGL, 法則固定)",
+  "solver": "real-space finite-difference (periodic np.roll Laplacian), explicit Euler",
+  "dt": 0.03138761328360318,
+  "dx": 1.0,
+  "grid": [
+    48,
+    48,
+    48
+  ],
+  "boundary": "periodic",
+  "params": {
+    "b": 1.052,
+    "c": -1.684
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "09b8e5a30fdf6e32435f83cacd528788938755e8f2c12f7d67d75631e7752085"
+}

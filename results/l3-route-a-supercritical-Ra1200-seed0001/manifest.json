@@ -1,0 +1,23 @@
+{
+  "run_id": "l3-route-a-supercritical-Ra1200-seed0001",
+  "equations": "Boussinesq RB (free-slip, fixed-T), domain-doubling pseudo-spectral, Ra_c(theory)=27*pi^4/4~657.51",
+  "solver": "semi-implicit spectral (diffusion) + explicit (advection/buoyancy), Chorin projection (Leray)",
+  "dt": 0.0005,
+  "dx": null,
+  "grid": [
+    17,
+    24,
+    24
+  ],
+  "boundary": "free-slip + fixed-T (z), periodic (x,y)",
+  "params": {
+    "Pr": 1.0,
+    "Ra": 1200.0
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "fd626e056009a6552d9489432f954fca1430a5c74bc732fb4579bb90ff711280"
+}
