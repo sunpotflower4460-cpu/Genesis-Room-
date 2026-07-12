@@ -1,0 +1,25 @@
+{
+  "run_id": "vortex-b-diatomic-conservative-seed0001",
+  "equations": "(i - gamma) dpsi/dt = [-1/2 lap + g|psi|^2 - mu] psi (damped GPE); N same-sign vortex lines (primary) + N mirror (net-zero periodic box)",
+  "solver": "split-step Fourier (Strang), periodic BC",
+  "dt": 0.02,
+  "dx": 0.5,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "g": 1.0,
+    "mu": 1.0,
+    "gamma": 0.0,
+    "n_same_sign": 2
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "0845be5821080018f1d0cabbfcd8ac8f0a7693c3f38e92d8c8be672fccf28ff4"
+}
