@@ -1,0 +1,174 @@
+{
+  "run_id": "vortex-a-crystal-conservative-seed0001",
+  "emergence": {
+    "reached_level": 4,
+    "candidate_level": 5,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": true,
+      "persistent_individuality": true,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "config": "quad_crystal",
+      "gamma": 0.0,
+      "n_cores_initial": 4,
+      "n_cores_final": 4,
+      "coexisted": true,
+      "annihilated": false,
+      "net_winding_series": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "winding_conserved": true,
+      "energy0": -15290.735,
+      "energy_final": -15290.742,
+      "energy_drift_frac": -0.0,
+      "norm0": 32489.256,
+      "norm_final": 32489.256,
+      "core_motion": {
+        "translated": 0.0,
+        "cum_rotation_deg": 0.0
+      },
+      "n_cores_series": [
+        [
+          0.0,
+          4
+        ],
+        [
+          1.6,
+          4
+        ],
+        [
+          3.2,
+          4
+        ],
+        [
+          4.8,
+          4
+        ],
+        [
+          6.4,
+          4
+        ],
+        [
+          8.0,
+          4
+        ],
+        [
+          9.6,
+          4
+        ],
+        [
+          11.2,
+          4
+        ],
+        [
+          12.8,
+          4
+        ],
+        [
+          14.4,
+          4
+        ],
+        [
+          16.0,
+          4
+        ],
+        [
+          17.6,
+          4
+        ],
+        [
+          19.2,
+          4
+        ],
+        [
+          20.8,
+          4
+        ],
+        [
+          22.4,
+          4
+        ],
+        [
+          24.0,
+          4
+        ],
+        [
+          25.6,
+          4
+        ],
+        [
+          27.2,
+          4
+        ],
+        [
+          28.8,
+          4
+        ],
+        [
+          30.4,
+          4
+        ],
+        [
+          31.98,
+          4
+        ]
+      ],
+      "min_density_final": 0.0295
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "E"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -4.719154268537747e-07,
+    "resolution_dependence": {
+      "64x64x64": 4
+    },
+    "seed_reproducibility": {
+      "1": 4
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "medium: gamma 0->finite flips fate (decisive control)",
+        "result": "coexisted=True annihilated=False at gamma=0.00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "run_id": "template-2d-cgl-seed0000",
+  "emergence": {
+    "reached_level": 2,
+    "candidate_level": 3,
+    "uninterrupted_from_zero": true,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": false,
+      "persistent_individuality": false,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "variance_growth": 0.001274,
+      "structure_factor_peak_k": 2.0,
+      "structure_factor_prominence": 26.032501,
+      "correlation_length": 0.5,
+      "defect_count": 26
+    },
+    "purity": {
+      "per_object_labels": false,
+      "external_optimum": false,
+      "role": "E"
+    },
+    "natural_emergence": {
+      "started_from_time_zero": true,
+      "target_shape_seeded": false,
+      "runtime_interventions": 0,
+      "target_dependent_rules": false,
+      "target_dependent_stopping": false,
+      "target_dependent_clipping": false,
+      "level_detected_by_measurement": true
+    }
+  },
+  "integrity": {
+    "conservation_drift": 0.22989111976149526,
+    "resolution_dependence": {
+      "96x96": 2.0
+    },
+    "seed_reproducibility": {
+      "0": 2,
+      "1": 2,
+      "2": 2
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": false,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": false,
+    "suggested_role_if_encoded": null,
+    "control_runs": [
+      {
+        "name": "no_quench_control (eps held negative)",
+        "result": "documented expectation only in this template: no symmetry breaking, no defects -- Codex should actually run this control for real claims, per docs/PHYSICS_INTEGRITY.md §6."
+      }
+    ]
+  }
+}

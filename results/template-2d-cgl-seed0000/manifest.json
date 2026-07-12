@@ -1,0 +1,26 @@
+{
+  "run_id": "template-2d-cgl-seed0000",
+  "equations": "d(psi)/dt = eps(t)*psi - |psi|^2 psi + D*lap(psi)  (complex TDGL / CGL quench)",
+  "solver": "explicit Euler, periodic Laplacian (np.roll)",
+  "dt": 0.05,
+  "dx": 1.0,
+  "grid": [
+    96,
+    96
+  ],
+  "boundary": "periodic",
+  "params": {
+    "D": 1.0,
+    "eps_final": 1.0,
+    "quench_start": 0.0,
+    "quench_duration": 10.0
+  },
+  "seed": 0,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "commit": null,
+  "checksum": "085078e04b0be5b49ac18aaa67fb24fc3bf17699663659ad195382cbb1c22244"
+}

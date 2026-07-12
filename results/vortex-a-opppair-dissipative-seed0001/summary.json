@@ -1,0 +1,174 @@
+{
+  "run_id": "vortex-a-opppair-dissipative-seed0001",
+  "emergence": {
+    "reached_level": 3,
+    "candidate_level": 4,
+    "uninterrupted_from_zero": false,
+    "level_detected_by_measurement": true,
+    "detected": {
+      "difference": true,
+      "localization": true,
+      "spontaneous_motion": false,
+      "circulation": true,
+      "persistent_individuality": false,
+      "co_differentiation": false,
+      "self_maintaining_closure": false,
+      "growth_division_inheritance": false,
+      "selection_open_ended": false
+    },
+    "measured_by": {
+      "config": "opposite_pair",
+      "gamma": 0.3,
+      "n_cores_initial": 2,
+      "n_cores_final": 0,
+      "coexisted": false,
+      "annihilated": true,
+      "net_winding_series": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "winding_conserved": true,
+      "energy0": -15684.429,
+      "energy_final": -16378.498,
+      "energy_drift_frac": -0.04425,
+      "norm0": 32628.658,
+      "norm_final": 32757.383,
+      "core_motion": {
+        "translated": null,
+        "cum_rotation_deg": null
+      },
+      "n_cores_series": [
+        [
+          0.0,
+          2
+        ],
+        [
+          1.2,
+          2
+        ],
+        [
+          2.4,
+          2
+        ],
+        [
+          3.6,
+          2
+        ],
+        [
+          4.8,
+          2
+        ],
+        [
+          6.0,
+          2
+        ],
+        [
+          7.2,
+          2
+        ],
+        [
+          8.4,
+          2
+        ],
+        [
+          9.6,
+          0
+        ],
+        [
+          10.8,
+          0
+        ],
+        [
+          12.0,
+          0
+        ],
+        [
+          13.2,
+          0
+        ],
+        [
+          14.4,
+          0
+        ],
+        [
+          15.6,
+          0
+        ],
+        [
+          16.8,
+          0
+        ],
+        [
+          18.0,
+          0
+        ],
+        [
+          19.2,
+          0
+        ],
+        [
+          20.4,
+          0
+        ],
+        [
+          21.6,
+          0
+        ],
+        [
+          22.8,
+          0
+        ],
+        [
+          23.98,
+          0
+        ]
+      ],
+      "min_density_final": 0.9884
+    },
+    "purity": {
+      "per_object_labels": true,
+      "external_optimum": false,
+      "role": "E"
+    }
+  },
+  "integrity": {
+    "conservation_drift": -0.044252116098596875,
+    "resolution_dependence": {
+      "64x64x64": 0
+    },
+    "seed_reproducibility": {
+      "1": 3
+    },
+    "reproducible_across_seeds": true,
+    "nan_or_uncontrolled_clip": false,
+    "passed": true
+  },
+  "input_vs_output": {
+    "audit8_questions": {
+      "q1_target_in_initial_condition": true,
+      "q2_gate_encodes_conclusion_causality": false,
+      "q3_gate_passes_null_control": false,
+      "q4_emerged_quantity_is_algebraic_restatement": false
+    },
+    "target_encoded": true,
+    "suggested_role_if_encoded": "Q",
+    "control_runs": [
+      {
+        "name": "medium: gamma 0->finite flips fate (decisive control)",
+        "result": "coexisted=False annihilated=True at gamma=0.30"
+      }
+    ]
+  }
+}
