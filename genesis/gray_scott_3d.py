@@ -61,6 +61,86 @@ def step(u, v, dt, p, k2):
     return np.real(np.fft.ifftn(uhat_new)), np.real(np.fft.ifftn(vhat_new))
 
 
+# --- 依頼(L3/L7指示書): 双安定の遺伝タグ場 T ------------------------------------------------
+# T はスポット物質(v)と一緒に拡散し、スポット内(vが大きい所)でのみ双安定ロック
+# (二重井戸 4*V*T*(1-T)*(T-0.5)、V=vでゲート——スポット外(v~0)ではロックが働かず、
+# 背景では中立値0.5のまま拡散のみ)。第8監査: 分裂位置・時刻・どの娘が継承するかは
+# 一切命令しない——分裂後も同じ受動的な拡散+ロック則が続くだけ。創始者スポットの
+# 初期タグ値(0/1)のみが許可されるIC(founder-seeds)。
+DT_TAG = 0.10  # Claudeのサンドボックス参考実装の拡散係数をそのまま採用
+GATE_STRENGTH = 4.0
+
+
+def make_seed_initial_multi(shape, rng, n_seeds=7, seed_radius=4, min_sep_frac=3.0,
+                             u_base=1.0, v_base=0.0, noise_amp=0.01):
+    """複数の創始者スポットを周期距離で最小分離を保ちつつランダム配置し、各スポットに
+    独立ランダムな0/1タグを与える(第8監査: 初期状態としてのみ許可)。"""
+    u = np.full(shape, u_base, dtype=float)
+    v = np.full(shape, v_base, dtype=float)
+    T = np.full(shape, 0.5, dtype=float)  # 背景=中立(未ロック)、スポット外では意味を持たない
+    X, Y, Z = np.indices(shape)
+    min_sep = min_sep_frac * seed_radius
+    centers = []
+    tags = []
+    attempts = 0
+    while len(centers) < n_seeds and attempts < n_seeds * 300:
+        attempts += 1
+        c = np.array([rng.integers(0, shape[0]), rng.integers(0, shape[1]), rng.integers(0, shape[2])])
+        ok = True
+        for c0 in centers:
+            delta = np.abs(c - c0)
+            delta = np.minimum(delta, np.array(shape) - delta)  # 周期距離
+            if np.sqrt((delta ** 2).sum()) < min_sep:
+                ok = False
+                break
+        if ok:
+            centers.append(c)
+            tags.append(int(rng.integers(0, 2)))
+    for c, tag in zip(centers, tags):
+        delta = np.abs(np.stack([X, Y, Z], axis=-1) - c)
+        delta = np.minimum(delta, np.array(shape) - delta)  # 周期距離
+        dist = np.sqrt((delta ** 2).sum(axis=-1))
+        blob = dist < seed_radius
+        u[blob] = 0.50
+        v[blob] = 0.25
+        T[blob] = float(tag)
+    u += noise_amp * rng.standard_normal(shape)
+    v += noise_amp * rng.standard_normal(shape)
+    return u, v, T, centers, tags
+
+
+def step_with_tag(u, v, T, dt, p, k2):
+    """通常のGray-Scottステップ(u,v)に加え、Tをvと同じ拡散係数で拡散させ、
+    スポット内(v値でゲート)でのみ双安定ロックさせる。"""
+    u_new, v_new = step(u, v, dt, p, k2)
+    reaction_T = GATE_STRENGTH * v * T * (1.0 - T) * (T - 0.5)
+    That = np.fft.fftn(T)
+    rT_hat = np.fft.fftn(reaction_T)
+    denom_T = 1.0 + dt * p["Dv"] * k2  # スポット物質(v)と一緒に拡散(依頼書指定通り)
+    T_new = np.real(np.fft.ifftn((That + dt * rT_hat) / denom_T))
+    T_new = np.clip(T_new, 0.0, 1.0)
+    return u_new, v_new, T_new
+
+
+def spot_tag_purity(v, T, threshold=0.1, min_voxels=5):
+    """各スポット(連結成分)ごとに、タグがclean(0または1に強くロック)されているかを測る。
+    bistable purity = max(0に近い割合, 1に近い割合)。0.6を超えれば「clean」とみなす
+    (依頼書指定の閾値)。戻り値: list of dict {size, mean_T, purity, clean}。"""
+    n, labeled, sizes = diag.connected_components(v > threshold)
+    spots = []
+    for i in range(1, n + 1):
+        if sizes[i - 1] < min_voxels:
+            continue
+        Ti = T[labeled == i]
+        near0 = float(np.mean(Ti < 0.25))
+        near1 = float(np.mean(Ti > 0.75))
+        purity = max(near0, near1)
+        spots.append({"size": int(sizes[i - 1]), "mean_T": float(Ti.mean()),
+                      "purity": round(purity, 4), "clean": bool(purity > 0.6),
+                      "dominant_tag": 1 if near1 >= near0 else 0})
+    return spots
+
+
 def count_spots(v, threshold=0.1, min_voxels=5):
     n, _, sizes = diag.connected_components(v > threshold)
     sig = sum(1 for s in sizes if s >= min_voxels)
