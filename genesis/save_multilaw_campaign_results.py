@@ -155,4 +155,25 @@ if __name__ == "__main__":
                                   "line_or_ring_patches/patches/seeds)のみ、広域な3family"
                                   "(spectral_powerlaw/bandpass/white_amp)は振幅を上げても"
                                   "0%(GSの可興奮媒質性=bistabilityによる、法則クラス固有の"
-                                  "family弁別)。")
+                                  "family弁別)。深い評価(48^3, steps=8000)で個体数が静穏な"
+                                  "定常値へ収束することを確認(CGL/Model Hの粗大化と対照的)。")
+
+    print()
+    records_mh, path_mh = load_ledger("model_h")
+    print("=== Model H campaign (n=%d) ===" % len(records_mh))
+    mh_candidates = [
+        ("patches", {"n_patches": 3, "radius_lo": 5.83, "radius_hi": 6.86, "amp": 0.58}, "trial5_patches"),
+        ("seeds", {"n_seeds": 5, "width": 5.8, "amp": 0.26}, "trial6_seeds"),
+    ]
+    save_campaign_room("model_h", records_mh, path_mh, hit_threshold=7.0,
+                       deep_eval_candidates=mh_candidates, deep_eval_grid=(28, 28, 28),
+                       deep_eval_steps=4000,
+                       extra_notes="高速スクリーンの上位候補はscore_max=7.70だがscore_final="
+                                  "4.70-5.70に低下(t~83という早い時刻でピーク)——CGLと同じ"
+                                  "警告サイン。深い評価(4x長い時間窓、同一格子)で確認したところ"
+                                  "trial5_patchesはstill_coarsening=True(粗大化継続中、"
+                                  "tail_mean=2.15まで低下)、trial6_seedsも初期の多domain"
+                                  "(最大17)から少数(tail_mean=3.23)へ収束——CGLと同じ"
+                                  "'純粋な緩和ダイナミクスは個体数を維持できない'という結論を"
+                                  "法則クラスをまたいで再確認した。Gray-Scottだけが例外(反応"
+                                  "拡散のTuring長さスケール選択が粗大化を止める)。")

@@ -1,0 +1,25 @@
+{
+  "run_id": "search-random-ic-3d-gray_scott-campaign-seed0000",
+  "equations": "GrayScottAdapter",
+  "solver": "see genesis/gray_scott.py",
+  "dt": 1.0,
+  "dx": 1.0,
+  "grid": [
+    28,
+    28,
+    28
+  ],
+  "boundary": "periodic",
+  "params": {
+    "Du": 0.16,
+    "Dv": 0.08,
+    "F": 0.0367,
+    "k": 0.0649
+  },
+  "seed": 0,
+  "seeds": [
+    0
+  ],
+  "commit": null,
+  "checksum": "38e32cc85fe87c834e9d72523c36e9d12e3e0f4518ee71c91fde9523ec4d4745"
+}

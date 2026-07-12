@@ -1,0 +1,25 @@
+{
+  "run_id": "search-random-ic-3d-model_h-campaign-seed0000",
+  "equations": "ModelHAdapter",
+  "solver": "see genesis/model_h.py",
+  "dt": 0.02,
+  "dx": 1.0,
+  "grid": [
+    28,
+    28,
+    28
+  ],
+  "boundary": "periodic",
+  "params": {
+    "M": 1.0,
+    "kappa": 1.0,
+    "nu": 1.0,
+    "C": 2.0
+  },
+  "seed": 0,
+  "seeds": [
+    0
+  ],
+  "commit": null,
+  "checksum": "42a0d9102d4156bdfec7240c4833d7cd886a9ca26cac1124142f2c73570dda70"
+}
