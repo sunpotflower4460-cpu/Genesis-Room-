@@ -1,0 +1,25 @@
+{
+  "run_id": "l7-tagged-mitosis-seed0001",
+  "equations": "Gray-Scott (du/dt=Du*lap(u)-u*v^2+F(1-u), dv/dt=Dv*lap(v)+u*v^2-(F+k)v) + 双安定遺伝タグ場 dT/dt=Dv*lap(T)+4*v*T*(1-T)*(T-0.5) (vでゲート)",
+  "solver": "pseudo-spectral, semi-implicit diffusion, explicit reaction",
+  "dt": 1.0,
+  "dx": 1.0,
+  "grid": [
+    64,
+    64,
+    64
+  ],
+  "boundary": "periodic",
+  "params": {
+    "Du": 0.16,
+    "Dv": 0.08,
+    "F": 0.0367,
+    "k": 0.0649
+  },
+  "seed": 1,
+  "seeds": [
+    1
+  ],
+  "commit": null,
+  "checksum": "e726be1959c0675be8983a778b898c6a545d2d7f8d19d0f1ccee59cc33bdaaf6"
+}
